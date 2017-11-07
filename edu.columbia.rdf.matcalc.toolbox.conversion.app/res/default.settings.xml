@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<setting name="/convert/case-sensitive" value="false"/>
+	<setting name="/convert/help/type" value="remote"/>
+	<setting name="/convert/mapping/ensembl-gene" value="false"/>
+	<setting name="/convert/mapping/ensembl-transcript" value="false"/>
+	<setting name="/convert/mapping/entrez" value="false"/>
+	<setting name="/convert/mapping/gene-symbol" value="false"/>
+	<setting name="/convert/mapping/refseq" value="false"/>
+	<setting name="/convert/one-gene-per-line" value="true"/>
+	<setting name="/convert/show-mapped" value="true"/>
+	<setting name="/convert/show-unmapped" value="false"/>
+	<setting name="/convert/split-genes" value="true"/>
+	<setting name="/convert/unique-genes" value="true"/>
+	<setting name="/genes/case-sensitive" value="false"/>
+	<setting name="/genes/help/type" value="remote"/>
+	<setting name="/genes/mapping/ensembl-gene" value="false"/>
+	<setting name="/genes/mapping/ensembl-transcript" value="false"/>
+	<setting name="/genes/mapping/entrez" value="true"/>
+	<setting name="/genes/mapping/gene-symbol" value="true"/>
+	<setting name="/genes/mapping/refseq" value="false"/>
+	<setting name="/genes/one-gene-per-line" value="true"/>
+	<setting name="/genes/show-mapped" value="true"/>
+	<setting name="/genes/show-unmapped" value="true"/>
+	<setting name="/genes/split-genes" value="true"/>
+	<setting name="/genes/unique-genes" value="true"/>
+</settings>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files pwd="/home/antony/Desktop/rna_seq_wt_d83v_hem_fpkm/gsea">
+  <file date="2016-08-25 17:47:55" name="/home/antony/Desktop/rna_seq_wt_d83v_hem_fpkm/gsea/gc_fpkm_human.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/RNA_seq/data/samples/hg19/rdf/sud10_20151215/sud10_fpkm_20160610.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/references/rdf/gep_mef2b_wt_ko_het_mouse_20160603/mef2b_het_wt_ko_mas5_mouse_conv_human.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/references/rdf/basso_blood_paper/basso_blood_bcl6_down_reg_120_core_20160802.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/references/rdf/gep_mef2b_wt_ko_het_mouse_20160603/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt"/>
+  <file date="2016-08-25 17:47:55" name="/home/antony/Desktop/basso.blood.bcl6.down.reg.1207.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/references/rdf/gep_mef2b_wt_ko_het_mouse_20160603/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt"/>
+  <file date="2016-08-25 17:47:55" name="/ifs/scratch/cancer/Lab_RDF/abh2138/references/rdf/mef2b_wt_ko_het_mouse_20160603/mef2b_het_wt_ko_mas5_mouse.txt"/>
+  <file date="2016-08-25 17:47:55" name="/home/antony/Desktop/fpkm/gsea/gc_fpkm_human.txt"/>
+  <file date="2016-08-25 17:47:55" name="/home/antony/Desktop/fpkm/gsea/gc_fpkm_human_3.txt"/>
+  <file date="2016-08-25 17:47:55" name="/home/antony/Desktop/test_genes.txt"/>
+</files>

@@ -1,0 +1,413 @@
+{
+  "pwd":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603", 
+  "files":[
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/RNA_seq\/data\/samples\/hg19\/rdf\/sud10_20151215\/sud10_fpkm_20160610.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_conv_human.txt", 
+      "date":"2016-11-18 17:01:15"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_std.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/basso.blood.bcl6.down.reg.1207.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/ifs\/scratch\/cancer\/Lab_RDF\/abh2138\/references\/rdf\/gep_mef2b_wt_ko_het_mouse_20160603\/mef2b_het_wt_ko_mas5_mouse_human_log2_max_mean.txt", 
+      "date":"2016-08-25 17:47:55"
+    },
+    {
+      "file":"\/home\/antony\/Desktop\/test_genes.txt", 
+      "date":"2016-08-25 17:47:55"
+    }
+  ]
+}
