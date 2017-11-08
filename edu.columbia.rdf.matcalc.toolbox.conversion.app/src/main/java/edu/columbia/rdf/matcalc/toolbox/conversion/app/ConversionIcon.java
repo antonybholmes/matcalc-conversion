@@ -18,8 +18,8 @@ package edu.columbia.rdf.matcalc.toolbox.conversion.app;
 import org.jebtk.modern.ColorTheme;
 import org.jebtk.modern.graphics.icons.ModernApplicationIcon;
 
-public class GenesIcon extends ModernApplicationIcon {
-	public GenesIcon() {
+public class ConversionIcon extends ModernApplicationIcon {
+	public ConversionIcon() {
 		super("G", "e", ColorTheme.GREEN);
 	}
 }

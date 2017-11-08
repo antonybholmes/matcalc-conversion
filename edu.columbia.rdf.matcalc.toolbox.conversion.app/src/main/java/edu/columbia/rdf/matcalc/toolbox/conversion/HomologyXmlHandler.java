@@ -34,6 +34,7 @@ import java.util.Map;
 
 import org.jebtk.core.collections.DefaultTreeMap;
 import org.jebtk.core.collections.DefaultTreeMapCreator;
+import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.collections.TreeMapCreator;
 import org.jebtk.core.text.Parser;
 import org.xml.sax.Attributes;
@@ -49,14 +50,14 @@ public class HomologyXmlHandler extends DefaultHandler {
 
 	private String mSymbol;
 	private SpeciesHomologyMap mSpeciesMap;
-	private Map<Integer, Map<String, Map<String, String>>> mIdMap;
+	private Map<Integer, IterMap<String, IterMap<String, String>>> mIdMap;
 			
 	private int mTaxId;
 
 	public HomologyXmlHandler(SpeciesHomologyMap speciesMap) {
 		mSpeciesMap = speciesMap;
 		
-		mIdMap = new DefaultTreeMap<Integer, Map<String, Map<String, String>>>(new DefaultTreeMapCreator<String, Map<String, String>>(new TreeMapCreator<String, String>()));
+		mIdMap = new DefaultTreeMap<Integer, IterMap<String, IterMap<String, String>>>(new DefaultTreeMapCreator<String, IterMap<String, String>>(new TreeMapCreator<String, String>()));
 
 	}
 

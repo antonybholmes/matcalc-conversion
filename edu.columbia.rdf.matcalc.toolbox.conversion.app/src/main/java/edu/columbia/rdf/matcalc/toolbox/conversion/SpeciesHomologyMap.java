@@ -15,13 +15,14 @@ import org.jebtk.core.Resources;
 import org.jebtk.core.collections.DefaultHashMap;
 import org.jebtk.core.collections.DefaultHashMapCreator;
 import org.jebtk.core.collections.EntryCreator;
+import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.text.Splitter;
 import org.jebtk.core.text.TextUtils;
 import org.xml.sax.SAXException;
 
 public class SpeciesHomologyMap {
 	
-	private Map<Integer, Map<Integer, HomologyMap>> mConversionMap;
+	private Map<Integer, IterMap<Integer, HomologyMap>> mConversionMap;
 	
 	public SpeciesHomologyMap() {
 		mConversionMap = DefaultHashMap.create(new DefaultHashMapCreator<Integer, HomologyMap>(new EntryCreator<HomologyMap>(){
