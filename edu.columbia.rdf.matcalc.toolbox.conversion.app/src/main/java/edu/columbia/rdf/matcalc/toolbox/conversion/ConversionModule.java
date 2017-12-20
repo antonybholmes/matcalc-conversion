@@ -365,7 +365,7 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 		GenesMap mouseMap = GenesService.getInstance().getMouseMap();
 
 
-		int c = m.getColumnCount();
+		int c = m.getCols();
 
 		if (dialog.getOutputSymbols()) {
 			++c;
@@ -400,11 +400,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 		}
 
 		DataFrame ret = 
-				DataFrame.createDataFrame(m.getRowCount(), c);
+				DataFrame.createDataFrame(m.getRows(), c);
 
 		DataFrame.copy(m, ret);
 
-		c = m.getColumnCount();
+		c = m.getCols();
 
 		String prefix;
 		
@@ -446,7 +446,7 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 			ret.setColumnName(c++, prefix + " Conversions");
 		}
 
-		for (int i = 0; i < ret.getRowCount(); ++i) {
+		for (int i = 0; i < ret.getRows(); ++i) {
 			String id = ids.get(i);
 			
 			Conversion fromSymbol = new Conversion(id, "input:" + id);
@@ -535,7 +535,7 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 				}
 			}
 
-			c = m.getColumnCount();
+			c = m.getCols();
 
 			if (dialog.getOutputSymbols()) {
 				String o = TextUtils.NA;
