@@ -44,180 +44,170 @@ import org.jebtk.modern.window.WindowWidgetFocusEvents;
  * The class PatternDiscoveryDialog.
  */
 public class GenesDialog extends ModernDialogHelpWindow implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The check reset.
-	 */
-	private CheckBox mCheckSplit = 
-			new ModernCheckSwitch("Split hyphens");
-	
-	private ModernRadioButton mRadioConvFromHuman = 
-			new ModernRadioButton("Human");
-	
-	private ModernRadioButton mRadioConvFromMouse = 
-			new ModernRadioButton("Mouse");
-	
-	private ModernRadioButton mRadioConvToHuman = 
-			new ModernRadioButton("Human");
-	
-	private ModernRadioButton mRadioConvToMouse = 
-			new ModernRadioButton("Mouse");
-	
 
-	private CheckBox mCheckSymbol =
-			new ModernCheckSwitch("Symbol", true);
-	
-	private CheckBox mCheckEntrez =
-			new ModernCheckSwitch("Entrez ID");
-	
-	private CheckBox mCheckRefSeq =
-			new ModernCheckSwitch("RefSeq ID");
-	
-	private CheckBox mCheckEnsemblTranscript =
-			new ModernCheckSwitch("Ensembl Transcript");
-	
-	private CheckBox mCheckEnsemblGene =
-			new ModernCheckSwitch("Ensembl Gene");
-	
-	private CheckBox mCheckChr =
-			new ModernCheckSwitch("Chromosome");
-	
-	private CheckBox mCheckStrand =
-			new ModernCheckSwitch("Strand");
-	
-	private CheckBox mCheckConversions =
-			new ModernCheckSwitch("Conversions", true);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
+  /**
+   * The check reset.
+   */
+  private CheckBox mCheckSplit = new ModernCheckSwitch("Split hyphens");
 
-	/**
-	 * Instantiates a new pattern discovery dialog.
-	 *
-	 * @param parent the parent
-	 * @param matrix the matrix
-	 * @param groups the groups
-	 */
-	public GenesDialog(ModernWindow parent) {
-		super(parent, "genes.help.url");
+  private ModernRadioButton mRadioConvFromHuman = new ModernRadioButton("Human");
 
-		setTitle("Genes");
-		
-		setup();
+  private ModernRadioButton mRadioConvFromMouse = new ModernRadioButton("Mouse");
 
-		createUi();
-	}
+  private ModernRadioButton mRadioConvToHuman = new ModernRadioButton("Human");
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		addWindowListener(new WindowWidgetFocusEvents(mOkButton));
-		
-		new ModernButtonGroup(mRadioConvFromHuman, mRadioConvFromMouse);
-		new ModernButtonGroup(mRadioConvToHuman, mRadioConvToMouse);
-		
-		mRadioConvFromHuman.doClick();
-		mRadioConvToHuman.doClick();
-		
-		setSize(540, 540);
-		
-		UI.centerWindowToScreen(this);
-	}
+  private ModernRadioButton mRadioConvToMouse = new ModernRadioButton("Mouse");
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+  private CheckBox mCheckSymbol = new ModernCheckSwitch("Symbol", true);
 
-		Box box = VBox.create();
-		
-		sectionHeader("Input", box);
-		
-		box.add(mRadioConvFromHuman);
-		//box.add(UI.createVGap(5));
-		box.add(mRadioConvFromMouse);
-		box.add(UI.createVGap(5));
-		box.add(mCheckSplit);
+  private CheckBox mCheckEntrez = new ModernCheckSwitch("Entrez ID");
 
-		midSectionHeader("Output", box);
-		
-		box.add(mRadioConvToHuman);
-		//box.add(UI.createVGap(5));
-		box.add(mRadioConvToMouse);
-		box.add(UI.createVGap(10));
-		box.add(mCheckConversions);
-		box.add(mCheckSymbol);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckEntrez);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckRefSeq);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckEnsemblTranscript);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckEnsemblGene);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckChr);
-		//box2.add(UI.createVGap(5));
-		box.add(mCheckStrand);
-		//box2.add(UI.createVGap(5));
-		
-		setDialogCardContent(box);
-	}
+  private CheckBox mCheckRefSeq = new ModernCheckSwitch("RefSeq ID");
 
-	public boolean getOutputSymbols() {
-		return mCheckSymbol.isSelected();
-	}
+  private CheckBox mCheckEnsemblTranscript = new ModernCheckSwitch("Ensembl Transcript");
 
-	public boolean getConvFromHuman() {
-		return mRadioConvFromHuman.isSelected();
-	}
-	
-	public boolean getConvFromMouse() {
-		return mRadioConvFromMouse.isSelected();
-	}
-	
-	public boolean getConvToHuman() {
-		return mRadioConvToHuman.isSelected();
-	}
-	
-	public boolean getConvToMouse() {
-		return mRadioConvToMouse.isSelected();
-	}
+  private CheckBox mCheckEnsemblGene = new ModernCheckSwitch("Ensembl Gene");
 
-	public boolean getOutputChr() {
-		return mCheckChr.isSelected();
-	}
-	
-	public boolean getOutputStrand() {
-		return mCheckStrand.isSelected();
-	}
+  private CheckBox mCheckChr = new ModernCheckSwitch("Chromosome");
 
-	public boolean getOutputEntrez() {
-		return mCheckEntrez.isSelected();
-	}
+  private CheckBox mCheckStrand = new ModernCheckSwitch("Strand");
 
-	public boolean getOutputRefSeq() {
-		return mCheckRefSeq.isSelected();
-	}
+  private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions", true);
 
-	public boolean getOutputEnsemblGene() {
-		return mCheckEnsemblGene.isSelected();
-	}
-	
-	public boolean getOutputEnsemblTranscript() {
-		return mCheckEnsemblTranscript.isSelected();
-	}
+  /**
+   * Instantiates a new pattern discovery dialog.
+   *
+   * @param parent
+   *          the parent
+   * @param matrix
+   *          the matrix
+   * @param groups
+   *          the groups
+   */
+  public GenesDialog(ModernWindow parent) {
+    super(parent, "genes.help.url");
 
-	public boolean getSplit() {
-		return mCheckSplit.isSelected();
-	}
+    setTitle("Genes");
 
-	public boolean getOutputConversions() {
-		return mCheckConversions.isSelected();
-	}
+    setup();
+
+    createUi();
+  }
+
+  /**
+   * Setup.
+   */
+  private void setup() {
+    addWindowListener(new WindowWidgetFocusEvents(mOkButton));
+
+    new ModernButtonGroup(mRadioConvFromHuman, mRadioConvFromMouse);
+    new ModernButtonGroup(mRadioConvToHuman, mRadioConvToMouse);
+
+    mRadioConvFromHuman.doClick();
+    mRadioConvToHuman.doClick();
+
+    setSize(540, 540);
+
+    UI.centerWindowToScreen(this);
+  }
+
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
+
+    Box box = VBox.create();
+
+    sectionHeader("Input", box);
+
+    box.add(mRadioConvFromHuman);
+    // box.add(UI.createVGap(5));
+    box.add(mRadioConvFromMouse);
+    box.add(UI.createVGap(5));
+    box.add(mCheckSplit);
+
+    midSectionHeader("Output", box);
+
+    box.add(mRadioConvToHuman);
+    // box.add(UI.createVGap(5));
+    box.add(mRadioConvToMouse);
+    box.add(UI.createVGap(10));
+    box.add(mCheckConversions);
+    box.add(mCheckSymbol);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckEntrez);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckRefSeq);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckEnsemblTranscript);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckEnsemblGene);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckChr);
+    // box2.add(UI.createVGap(5));
+    box.add(mCheckStrand);
+    // box2.add(UI.createVGap(5));
+
+    setDialogCardContent(box);
+  }
+
+  public boolean getOutputSymbols() {
+    return mCheckSymbol.isSelected();
+  }
+
+  public boolean getConvFromHuman() {
+    return mRadioConvFromHuman.isSelected();
+  }
+
+  public boolean getConvFromMouse() {
+    return mRadioConvFromMouse.isSelected();
+  }
+
+  public boolean getConvToHuman() {
+    return mRadioConvToHuman.isSelected();
+  }
+
+  public boolean getConvToMouse() {
+    return mRadioConvToMouse.isSelected();
+  }
+
+  public boolean getOutputChr() {
+    return mCheckChr.isSelected();
+  }
+
+  public boolean getOutputStrand() {
+    return mCheckStrand.isSelected();
+  }
+
+  public boolean getOutputEntrez() {
+    return mCheckEntrez.isSelected();
+  }
+
+  public boolean getOutputRefSeq() {
+    return mCheckRefSeq.isSelected();
+  }
+
+  public boolean getOutputEnsemblGene() {
+    return mCheckEnsemblGene.isSelected();
+  }
+
+  public boolean getOutputEnsemblTranscript() {
+    return mCheckEnsemblTranscript.isSelected();
+  }
+
+  public boolean getSplit() {
+    return mCheckSplit.isSelected();
+  }
+
+  public boolean getOutputConversions() {
+    return mCheckConversions.isSelected();
+  }
 }

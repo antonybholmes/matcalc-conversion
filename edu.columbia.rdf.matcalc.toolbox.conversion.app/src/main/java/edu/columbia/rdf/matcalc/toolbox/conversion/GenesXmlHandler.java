@@ -27,8 +27,6 @@
  */
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
-
-
 import java.text.ParseException;
 
 import org.jebtk.core.text.Parser;
@@ -36,58 +34,57 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
-
 /**
  * The class KeyXmlHandler.
  */
 public class GenesXmlHandler extends DefaultHandler {
-	
-	private String mSymbol;
-	private SpeciesGenesMap mSpeciesMap;
-	private int mTaxtId;
-	
-	public GenesXmlHandler(SpeciesGenesMap speciesMap) {
-		mSpeciesMap = speciesMap;
-	}
 
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-	 */
-	public void startElement(String uri, 
-			String localName,
-			String qName, 
-            Attributes attributes) throws SAXException {
-		if (qName.equals("genes")) {
-			try {
-				mTaxtId = Parser.toInt(attributes.getValue("tax_id"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		} else if (qName.equals("gene")) {
-			mSymbol = attributes.getValue("symbol");
-		} else if (qName.equals("mapping")) {
-			String name = attributes.getValue("name");
-			String type = attributes.getValue("type");
-			
-			mSpeciesMap.getMap(mTaxtId).addMapping(mSymbol, name, type);
-		} else if (qName.equals("alt-mapping")) {
-			String name = attributes.getValue("name");
-			mSpeciesMap.getMap(mTaxtId).addAltMapping(mSymbol, name);
-		} else if (qName.equals("old-mapping")) {
-			String name = attributes.getValue("name");
-			mSpeciesMap.getMap(mTaxtId).addOldMapping(mSymbol, name);
-		} else {
-			// Do nothing
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	public void endElement(String uri, 
-			String localName,
-			String qName) throws SAXException {
+  private String mSymbol;
+  private SpeciesGenesMap mSpeciesMap;
+  private int mTaxtId;
 
-	}
+  public GenesXmlHandler(SpeciesGenesMap speciesMap) {
+    mSpeciesMap = speciesMap;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+   * java.lang.String, java.lang.String, org.xml.sax.Attributes)
+   */
+  public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    if (qName.equals("genes")) {
+      try {
+        mTaxtId = Parser.toInt(attributes.getValue("tax_id"));
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+    } else if (qName.equals("gene")) {
+      mSymbol = attributes.getValue("symbol");
+    } else if (qName.equals("mapping")) {
+      String name = attributes.getValue("name");
+      String type = attributes.getValue("type");
+
+      mSpeciesMap.getMap(mTaxtId).addMapping(mSymbol, name, type);
+    } else if (qName.equals("alt-mapping")) {
+      String name = attributes.getValue("name");
+      mSpeciesMap.getMap(mTaxtId).addAltMapping(mSymbol, name);
+    } else if (qName.equals("old-mapping")) {
+      String name = attributes.getValue("name");
+      mSpeciesMap.getMap(mTaxtId).addOldMapping(mSymbol, name);
+    } else {
+      // Do nothing
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
+   * java.lang.String, java.lang.String)
+   */
+  public void endElement(String uri, String localName, String qName) throws SAXException {
+
+  }
 }

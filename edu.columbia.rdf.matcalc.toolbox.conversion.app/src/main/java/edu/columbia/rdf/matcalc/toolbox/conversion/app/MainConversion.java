@@ -44,21 +44,19 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.matcalc.bio.BioModuleLoader;
 import edu.columbia.rdf.matcalc.toolbox.conversion.ConversionModule;
 
-
-
-
-
 /**
  * The class MainGenes.
  */
 public class MainConversion {
-	public static final void main(String[] args) throws FontFormatException, IOException, SAXException, ParserConfigurationException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		AppService.getInstance().setAppInfo("genes");
-		
-		ThemeService.getInstance().setTheme(ColorTheme.GREEN);
-		
-		ModuleLoader ml = new BioModuleLoader().addModule(ConversionModule.class);
-		
-		MainMatCalc.main(new ConversionInfo(), ml);
-	}
+  public static final void main(String[] args)
+      throws FontFormatException, IOException, SAXException, ParserConfigurationException, ClassNotFoundException,
+      InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+    AppService.getInstance().setAppInfo("genes");
+
+    ThemeService.getInstance().setTheme(ColorTheme.GREEN);
+
+    ModuleLoader ml = new BioModuleLoader().addModule(ConversionModule.class);
+
+    MainMatCalc.main(new ConversionInfo(), ml);
+  }
 }

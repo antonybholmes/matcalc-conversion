@@ -31,22 +31,18 @@ import org.jebtk.core.AppVersion;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.help.GuiAppInfo;
 
-
 /**
  * The class GenesInfo.
  */
 public class ConversionInfo extends GuiAppInfo {
 
-	/**
-	 * Instantiates a new genes info.
-	 */
-	public ConversionInfo() {
-		super("Genes",
-				new AppVersion(9),
-				"Copyright (C) 2014-2016 Antony Holmes",
-				UIService.getInstance().loadIcon(ConversionIcon.class, 32),
-				UIService.getInstance().loadIcon(ConversionIcon.class, 128),
-				"Convert gene symbols and ids.");
-	}
+  /**
+   * Instantiates a new genes info.
+   */
+  public ConversionInfo() {
+    super("Genes", new AppVersion(9), "Copyright (C) 2014-2016 Antony Holmes",
+        UIService.getInstance().loadIcon(ConversionIcon.class, 32),
+        UIService.getInstance().loadIcon(ConversionIcon.class, 128), "Convert gene symbols and ids.");
+  }
 
 }

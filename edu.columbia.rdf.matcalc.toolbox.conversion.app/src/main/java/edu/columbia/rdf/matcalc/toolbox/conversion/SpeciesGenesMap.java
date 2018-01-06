@@ -14,45 +14,45 @@ import org.jebtk.core.Resources;
 import org.xml.sax.SAXException;
 
 public class SpeciesGenesMap {
-	private Map<Integer, GenesMap> mSpeciesMap = 
-			new HashMap<Integer, GenesMap>();
-	
-	public GenesMap getMap(int taxId) {
-		if (!mSpeciesMap.containsKey(taxId)) {
-			switch (taxId) {
-			case GenesService.MOUSE_TAX_ID:
-				mSpeciesMap.put(taxId, new GenesMap("mouse"));
-				break;
-			default:
-				mSpeciesMap.put(taxId, new GenesMap("human"));
-				break;
-			}
-		}
-		
-		return mSpeciesMap.get(taxId);
-	}
-	
-	
-	public static void parseGenesXmlGz(Path file, SpeciesGenesMap speciesMap) throws IOException, ParserConfigurationException, SAXException {
-		InputStream stream = Resources.getGzipInputStream(file);
-		
-		try {
-			parseGenesXml(stream, speciesMap);
-		} finally {
-			stream.close();
-		}
-	}
+  private Map<Integer, GenesMap> mSpeciesMap = new HashMap<Integer, GenesMap>();
 
-	public static void parseGenesXml(InputStream is, SpeciesGenesMap speciesMap) throws ParserConfigurationException, SAXException, IOException {
-		if (is == null) {
-			return;
-		}
+  public GenesMap getMap(int taxId) {
+    if (!mSpeciesMap.containsKey(taxId)) {
+      switch (taxId) {
+      case GenesService.MOUSE_TAX_ID:
+        mSpeciesMap.put(taxId, new GenesMap("mouse"));
+        break;
+      default:
+        mSpeciesMap.put(taxId, new GenesMap("human"));
+        break;
+      }
+    }
 
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		SAXParser saxParser = factory.newSAXParser();
+    return mSpeciesMap.get(taxId);
+  }
 
-		GenesXmlHandler handler = new GenesXmlHandler(speciesMap);
+  public static void parseGenesXmlGz(Path file, SpeciesGenesMap speciesMap)
+      throws IOException, ParserConfigurationException, SAXException {
+    InputStream stream = Resources.getGzipInputStream(file);
 
-		saxParser.parse(is, handler);
-	}
+    try {
+      parseGenesXml(stream, speciesMap);
+    } finally {
+      stream.close();
+    }
+  }
+
+  public static void parseGenesXml(InputStream is, SpeciesGenesMap speciesMap)
+      throws ParserConfigurationException, SAXException, IOException {
+    if (is == null) {
+      return;
+    }
+
+    SAXParserFactory factory = SAXParserFactory.newInstance();
+    SAXParser saxParser = factory.newSAXParser();
+
+    GenesXmlHandler handler = new GenesXmlHandler(speciesMap);
+
+    saxParser.parse(is, handler);
+  }
 }

@@ -8,10 +8,9 @@ import org.jebtk.core.collections.DefaultHashMap;
 import org.jebtk.core.collections.TreeSetCreator;
 
 public class GeneMapping {
-	private Map<String, Set<String>> mOfficalIdMap = 
-			DefaultHashMap.create(new TreeSetCreator<String>());
-	
-	public Collection<String> getIds(String type) {
-		return mOfficalIdMap.get(type);
-	}
+  private Map<String, Set<String>> mOfficalIdMap = DefaultHashMap.create(new TreeSetCreator<String>());
+
+  public Collection<String> getIds(String type) {
+    return mOfficalIdMap.get(type);
+  }
 }

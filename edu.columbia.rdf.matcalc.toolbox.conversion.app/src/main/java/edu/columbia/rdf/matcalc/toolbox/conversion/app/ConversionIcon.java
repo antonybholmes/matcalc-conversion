@@ -19,7 +19,7 @@ import org.jebtk.modern.ColorTheme;
 import org.jebtk.modern.graphics.icons.ModernApplicationIcon;
 
 public class ConversionIcon extends ModernApplicationIcon {
-	public ConversionIcon() {
-		super("G", "e", ColorTheme.GREEN);
-	}
+  public ConversionIcon() {
+    super("G", "e", ColorTheme.GREEN);
+  }
 }

@@ -42,144 +42,137 @@ import org.xml.sax.SAXException;
  */
 public class GenesService {
 
-	private static class GenesServiceLoader {
-		private static final GenesService INSTANCE = new GenesService();
-	}
+  private static class GenesServiceLoader {
+    private static final GenesService INSTANCE = new GenesService();
+  }
 
-	/**
-	 * Gets the single instance of SettingsService.
-	 *
-	 * @return single instance of SettingsService
-	 */
-	public static GenesService getInstance() {
-		return GenesServiceLoader.INSTANCE;
-	}
+  /**
+   * Gets the single instance of SettingsService.
+   *
+   * @return single instance of SettingsService
+   */
+  public static GenesService getInstance() {
+    return GenesServiceLoader.INSTANCE;
+  }
 
+  public static final int HUMAN_TAX_ID = 9606;
 
-	public static final int HUMAN_TAX_ID = 9606;
-	
-	public static final int MOUSE_TAX_ID = 10090;
+  public static final int MOUSE_TAX_ID = 10090;
 
-	/**
-	 * The member dbs. We only load each db type once
-	 */
-	private SpeciesGenesMap mSpeciesMap = new SpeciesGenesMap();
-	
-	private SpeciesHomologyMap mHomologyMap = new SpeciesHomologyMap();
+  /**
+   * The member dbs. We only load each db type once
+   */
+  private SpeciesGenesMap mSpeciesMap = new SpeciesGenesMap();
 
-	private boolean mAutoLoad = true;
+  private SpeciesHomologyMap mHomologyMap = new SpeciesHomologyMap();
 
-	private boolean mAutoLoadHomology = true;
+  private boolean mAutoLoad = true;
 
-	private static final Path GENES_DIR = 
-			PathUtils.getPath("res/modules/genes");
-	
-	private static final Path HOMOLOGY_DIR = 
-			PathUtils.getPath("res/modules/genes/homology");
+  private boolean mAutoLoadHomology = true;
 
-	/**
-	 * Instantiates a new motifs db service.
-	 */
-	private GenesService() {
-		// do nothing
-	}
+  private static final Path GENES_DIR = PathUtils.getPath("res/modules/genes");
 
-	public SpeciesGenesMap getMap() {
-		return mSpeciesMap;
-	}
-	
-	public SpeciesHomologyMap getHomologyMap() {
-		try {
-			autoLoadHomology();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		}
-		
-		return mHomologyMap;
-	}
+  private static final Path HOMOLOGY_DIR = PathUtils.getPath("res/modules/genes/homology");
 
-	/**
-	 * Adds the back end.
-	 *
-	 * @param motifsDb the motifs db
-	 * @return 
-	 */
-	public GenesMap getMap(int taxId) {
-		try {
-			autoLoad();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		}
+  /**
+   * Instantiates a new motifs db service.
+   */
+  private GenesService() {
+    // do nothing
+  }
 
-		return mSpeciesMap.getMap(taxId);
-	}
+  public SpeciesGenesMap getMap() {
+    return mSpeciesMap;
+  }
 
+  public SpeciesHomologyMap getHomologyMap() {
+    try {
+      autoLoadHomology();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ParserConfigurationException e) {
+      e.printStackTrace();
+    } catch (SAXException e) {
+      e.printStackTrace();
+    }
 
+    return mHomologyMap;
+  }
 
-	public GenesMap getHumanMap() {
-		return getMap(HUMAN_TAX_ID);
-	}
+  /**
+   * Adds the back end.
+   *
+   * @param motifsDb
+   *          the motifs db
+   * @return
+   */
+  public GenesMap getMap(int taxId) {
+    try {
+      autoLoad();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ParserConfigurationException e) {
+      e.printStackTrace();
+    } catch (SAXException e) {
+      e.printStackTrace();
+    }
 
-	public GenesMap getMouseMap() {
-		return getMap(MOUSE_TAX_ID);
-	}
+    return mSpeciesMap.getMap(taxId);
+  }
 
-	public void loadXml(Path file) throws IOException, ParserConfigurationException, SAXException {
-		SpeciesGenesMap.parseGenesXmlGz(file, mSpeciesMap);
-	}
+  public GenesMap getHumanMap() {
+    return getMap(HUMAN_TAX_ID);
+  }
 
-	private void autoLoad() throws IOException, ParserConfigurationException, SAXException {
-		if (mAutoLoad) {
-			//autoLoadEnsembl();
-			
-			autoLoadXml();
+  public GenesMap getMouseMap() {
+    return getMap(MOUSE_TAX_ID);
+  }
 
-			mAutoLoad = false;
-		}
-	}
-	
-	
+  public void loadXml(Path file) throws IOException, ParserConfigurationException, SAXException {
+    SpeciesGenesMap.parseGenesXmlGz(file, mSpeciesMap);
+  }
 
-	private void autoLoadXml() throws IOException, ParserConfigurationException, SAXException {
-		List<Path> files = FileUtils.findAll(GENES_DIR, "xml.gz");
+  private void autoLoad() throws IOException, ParserConfigurationException, SAXException {
+    if (mAutoLoad) {
+      // autoLoadEnsembl();
 
-		for (Path file : files) {
-			loadXml(file);
-		}
-	}
-	
-	private void autoLoadHomology() throws IOException, ParserConfigurationException, SAXException {
-		if (mAutoLoadHomology) {
-			loadHomologyXml();
-			
-			mAutoLoadHomology = false;
-		}
-	}
-	
-	private void loadHomologyXml() throws IOException, ParserConfigurationException, SAXException {
-		List<Path> files = FileUtils.findAll(HOMOLOGY_DIR, "xml.gz");
+      autoLoadXml();
 
-		for (Path file : files) {
-			loadHomologyXml(file);
-		}
-	}
-	
-	public void loadHomologyXml(Path file) throws IOException, ParserConfigurationException, SAXException {
-		SpeciesHomologyMap.parseGenesXmlGz(file, mHomologyMap);
-	}
-	
-	/*
-	public void autoLoadEnsembl() throws IOException {
-		mSpeciesMap.getMap(HUMAN_MAP).loadEnsembl(GenesModule.ENSEMBL_HUMAN_FILE);
-		mSpeciesMap.getMap(MOUSE_MAP).loadEnsembl(GenesModule.ENSEMBL_MOUSE_FILE);
-	}
-	*/
+      mAutoLoad = false;
+    }
+  }
+
+  private void autoLoadXml() throws IOException, ParserConfigurationException, SAXException {
+    List<Path> files = FileUtils.findAll(GENES_DIR, "xml.gz");
+
+    for (Path file : files) {
+      loadXml(file);
+    }
+  }
+
+  private void autoLoadHomology() throws IOException, ParserConfigurationException, SAXException {
+    if (mAutoLoadHomology) {
+      loadHomologyXml();
+
+      mAutoLoadHomology = false;
+    }
+  }
+
+  private void loadHomologyXml() throws IOException, ParserConfigurationException, SAXException {
+    List<Path> files = FileUtils.findAll(HOMOLOGY_DIR, "xml.gz");
+
+    for (Path file : files) {
+      loadHomologyXml(file);
+    }
+  }
+
+  public void loadHomologyXml(Path file) throws IOException, ParserConfigurationException, SAXException {
+    SpeciesHomologyMap.parseGenesXmlGz(file, mHomologyMap);
+  }
+
+  /*
+   * public void autoLoadEnsembl() throws IOException {
+   * mSpeciesMap.getMap(HUMAN_MAP).loadEnsembl(GenesModule.ENSEMBL_HUMAN_FILE);
+   * mSpeciesMap.getMap(MOUSE_MAP).loadEnsembl(GenesModule.ENSEMBL_MOUSE_FILE); }
+   */
 }
