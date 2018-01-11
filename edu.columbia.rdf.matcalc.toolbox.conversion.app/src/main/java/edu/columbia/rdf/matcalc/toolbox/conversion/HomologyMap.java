@@ -9,7 +9,8 @@ import org.jebtk.core.collections.DefaultTreeMap;
 import org.jebtk.core.collections.TreeSetCreator;
 
 public class HomologyMap {
-  private Map<String, Set<String>> mIdMap = DefaultTreeMap.create(new TreeSetCreator<String>());
+  private Map<String, Set<String>> mIdMap = DefaultTreeMap
+      .create(new TreeSetCreator<String>());
 
   public void addMapping(String id1, String id2) {
     mIdMap.get(id1.toLowerCase()).add(id2.toLowerCase());

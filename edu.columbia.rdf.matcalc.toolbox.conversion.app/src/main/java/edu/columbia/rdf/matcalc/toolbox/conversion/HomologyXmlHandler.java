@@ -54,7 +54,8 @@ public class HomologyXmlHandler extends DefaultHandler {
     mSpeciesMap = speciesMap;
 
     mIdMap = new DefaultTreeMap<Integer, IterMap<String, IterMap<String, String>>>(
-        new DefaultTreeMapCreator<String, IterMap<String, String>>(new TreeMapCreator<String, String>()));
+        new DefaultTreeMapCreator<String, IterMap<String, String>>(
+            new TreeMapCreator<String, String>()));
 
   }
 
@@ -64,7 +65,10 @@ public class HomologyXmlHandler extends DefaultHandler {
    * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
    * java.lang.String, java.lang.String, org.xml.sax.Attributes)
    */
-  public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+  public void startElement(String uri,
+      String localName,
+      String qName,
+      Attributes attributes) throws SAXException {
     if (qName.equals("group")) {
       mIdMap.clear();
     } else if (qName.equals("gene")) {
@@ -98,7 +102,8 @@ public class HomologyXmlHandler extends DefaultHandler {
    * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
    * java.lang.String, java.lang.String)
    */
-  public void endElement(String uri, String localName, String qName) throws SAXException {
+  public void endElement(String uri, String localName, String qName)
+      throws SAXException {
     if (qName.equals("group")) {
 
       for (int taxId1 : mIdMap.keySet()) {
@@ -108,17 +113,19 @@ public class HomologyXmlHandler extends DefaultHandler {
               for (String symbol2 : mIdMap.get(taxId2).keySet()) {
                 for (String type2 : mIdMap.get(taxId2).get(symbol2).keySet()) {
                   /*
-                   * String id1 = symbol1.toLowerCase(); String id2 = symbol2.toLowerCase();
+                   * String id1 = symbol1.toLowerCase(); String id2 =
+                   * symbol2.toLowerCase();
                    * 
                    * mSpeciesMap.getMap(taxId1, taxId2).addMapping(id1, id2);
                    * mSpeciesMap.getMap(taxId2, taxId1).addMapping(id2, id1);
                    * 
                    * if (id1.contains("coro7") || id2.contains("coro7")) {
-                   * System.err.println("coro " + taxId1 + " " + id1 + " " + taxId2 + " " + id2);
-                   * }
+                   * System.err.println("coro " + taxId1 + " " + id1 + " " +
+                   * taxId2 + " " + id2); }
                    */
 
-                  String id1 = mIdMap.get(taxId1).get(symbol1).get(type1).toLowerCase();
+                  String id1 = mIdMap.get(taxId1).get(symbol1).get(type1)
+                      .toLowerCase();
                   String id2 = symbol2.toLowerCase(); // mIdMap.get(taxId2).get(symbol2).get(type2).toLowerCase();
 
                   mSpeciesMap.getMap(taxId1, taxId2).addMapping(id1, id2);

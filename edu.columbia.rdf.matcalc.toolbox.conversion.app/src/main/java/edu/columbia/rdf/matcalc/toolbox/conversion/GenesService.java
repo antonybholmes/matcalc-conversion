@@ -72,7 +72,8 @@ public class GenesService {
 
   private static final Path GENES_DIR = PathUtils.getPath("res/modules/genes");
 
-  private static final Path HOMOLOGY_DIR = PathUtils.getPath("res/modules/genes/homology");
+  private static final Path HOMOLOGY_DIR = PathUtils
+      .getPath("res/modules/genes/homology");
 
   /**
    * Instantiates a new motifs db service.
@@ -102,8 +103,7 @@ public class GenesService {
   /**
    * Adds the back end.
    *
-   * @param motifsDb
-   *          the motifs db
+   * @param motifsDb the motifs db
    * @return
    */
   public GenesMap getMap(int taxId) {
@@ -128,11 +128,13 @@ public class GenesService {
     return getMap(MOUSE_TAX_ID);
   }
 
-  public void loadXml(Path file) throws IOException, ParserConfigurationException, SAXException {
+  public void loadXml(Path file)
+      throws IOException, ParserConfigurationException, SAXException {
     SpeciesGenesMap.parseGenesXmlGz(file, mSpeciesMap);
   }
 
-  private void autoLoad() throws IOException, ParserConfigurationException, SAXException {
+  private void autoLoad()
+      throws IOException, ParserConfigurationException, SAXException {
     if (mAutoLoad) {
       // autoLoadEnsembl();
 
@@ -142,7 +144,8 @@ public class GenesService {
     }
   }
 
-  private void autoLoadXml() throws IOException, ParserConfigurationException, SAXException {
+  private void autoLoadXml()
+      throws IOException, ParserConfigurationException, SAXException {
     List<Path> files = FileUtils.findAll(GENES_DIR, "xml.gz");
 
     for (Path file : files) {
@@ -150,7 +153,8 @@ public class GenesService {
     }
   }
 
-  private void autoLoadHomology() throws IOException, ParserConfigurationException, SAXException {
+  private void autoLoadHomology()
+      throws IOException, ParserConfigurationException, SAXException {
     if (mAutoLoadHomology) {
       loadHomologyXml();
 
@@ -158,7 +162,8 @@ public class GenesService {
     }
   }
 
-  private void loadHomologyXml() throws IOException, ParserConfigurationException, SAXException {
+  private void loadHomologyXml()
+      throws IOException, ParserConfigurationException, SAXException {
     List<Path> files = FileUtils.findAll(HOMOLOGY_DIR, "xml.gz");
 
     for (Path file : files) {
@@ -166,13 +171,15 @@ public class GenesService {
     }
   }
 
-  public void loadHomologyXml(Path file) throws IOException, ParserConfigurationException, SAXException {
+  public void loadHomologyXml(Path file)
+      throws IOException, ParserConfigurationException, SAXException {
     SpeciesHomologyMap.parseGenesXmlGz(file, mHomologyMap);
   }
 
   /*
    * public void autoLoadEnsembl() throws IOException {
    * mSpeciesMap.getMap(HUMAN_MAP).loadEnsembl(GenesModule.ENSEMBL_HUMAN_FILE);
-   * mSpeciesMap.getMap(MOUSE_MAP).loadEnsembl(GenesModule.ENSEMBL_MOUSE_FILE); }
+   * mSpeciesMap.getMap(MOUSE_MAP).loadEnsembl(GenesModule.ENSEMBL_MOUSE_FILE);
+   * }
    */
 }

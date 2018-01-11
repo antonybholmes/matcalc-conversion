@@ -99,7 +99,10 @@ public class GenesMap {
    * @param conversionMap
    * @param symbols
    */
-  public void convert(Conversion c, boolean split, HomologyMap conversionMap, Set<Conversion> symbols) {
+  public void convert(Conversion c,
+      boolean split,
+      HomologyMap conversionMap,
+      Set<Conversion> symbols) {
 
     String id = c.getId();
 
@@ -252,8 +255,8 @@ public class GenesMap {
   }
 
   /**
-   * For a given id, return any mappings of a given type. type will be of the form
-   * "entrez", "refseq", "ensembl-gene" etc depending on the data sources
+   * For a given id, return any mappings of a given type. type will be of the
+   * form "entrez", "refseq", "ensembl-gene" etc depending on the data sources
    * available.
    * 
    * @param id
@@ -279,7 +282,8 @@ public class GenesMap {
   }
 
   public String toString(final Set<Conversion> symbols, String type) {
-    return Join.onSemiColon().values(CollectionUtils.sort(getMappings(symbols, type))).toString();
+    return Join.onSemiColon()
+        .values(CollectionUtils.sort(getMappings(symbols, type))).toString();
   }
 
   /*

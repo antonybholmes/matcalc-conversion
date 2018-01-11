@@ -26,20 +26,23 @@ public class SpeciesHomologyMap {
 
   public SpeciesHomologyMap() {
     mConversionMap = DefaultHashMap
-        .create(new DefaultHashMapCreator<Integer, HomologyMap>(new EntryCreator<HomologyMap>() {
-          @Override
-          public HomologyMap newEntry() {
-            return new HomologyMap();
-          }
-        }));
+        .create(new DefaultHashMapCreator<Integer, HomologyMap>(
+            new EntryCreator<HomologyMap>() {
+              @Override
+              public HomologyMap newEntry() {
+                return new HomologyMap();
+              }
+            }));
   }
 
   public HomologyMap humanToMouse() {
-    return mConversionMap.get(GenesService.HUMAN_TAX_ID).get(GenesService.MOUSE_TAX_ID);
+    return mConversionMap.get(GenesService.HUMAN_TAX_ID)
+        .get(GenesService.MOUSE_TAX_ID);
   }
 
   public HomologyMap mouseToHuman() {
-    return mConversionMap.get(GenesService.MOUSE_TAX_ID).get(GenesService.HUMAN_TAX_ID);
+    return mConversionMap.get(GenesService.MOUSE_TAX_ID)
+        .get(GenesService.HUMAN_TAX_ID);
   }
 
   public HomologyMap getMap(int fromTaxId, int toTaxId) {
@@ -85,25 +88,33 @@ public class SpeciesHomologyMap {
         if (tokens.get(1).equals("9606")) {
           humanEntrez = tokens.get(2);
           humanSymbol = tokens.get(3).toLowerCase();
-          humanRefseq = tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING);
+          humanRefseq = tokens.get(5).toLowerCase().replaceFirst("\\..+",
+              TextUtils.EMPTY_STRING);
         }
 
         // Mouse
         if (tokens.get(1).equals("10090")) {
           mouseEntrez = tokens.get(2);
           mouseSymbol = tokens.get(3).toLowerCase();
-          mouseRefseq = tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING);
+          mouseRefseq = tokens.get(5).toLowerCase().replaceFirst("\\..+",
+              TextUtils.EMPTY_STRING);
         }
 
         if (humanSymbol != null && mouseSymbol != null) {
           // If both the human and mouse appear within a group,
           // create a mapping between them
-          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID).addMapping(humanSymbol, mouseSymbol);
-          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID).addMapping(humanEntrez, mouseSymbol);
-          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID).addMapping(humanRefseq, mouseSymbol);
-          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID).addMapping(mouseSymbol, humanSymbol);
-          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID).addMapping(mouseEntrez, humanSymbol);
-          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID).addMapping(mouseRefseq, humanSymbol);
+          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
+              .addMapping(humanSymbol, mouseSymbol);
+          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
+              .addMapping(humanEntrez, mouseSymbol);
+          getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
+              .addMapping(humanRefseq, mouseSymbol);
+          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
+              .addMapping(mouseSymbol, humanSymbol);
+          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
+              .addMapping(mouseEntrez, humanSymbol);
+          getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
+              .addMapping(mouseRefseq, humanSymbol);
         }
       }
     } finally {
@@ -122,7 +133,8 @@ public class SpeciesHomologyMap {
     }
   }
 
-  public static void parseHomologyXml(InputStream is, SpeciesHomologyMap speciesMap)
+  public static void parseHomologyXml(InputStream is,
+      SpeciesHomologyMap speciesMap)
       throws ParserConfigurationException, SAXException, IOException {
     if (is == null) {
       return;

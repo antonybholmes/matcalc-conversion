@@ -42,7 +42,8 @@ public class ConversionInfo extends GuiAppInfo {
   public ConversionInfo() {
     super("Genes", new AppVersion(9), "Copyright (C) 2014-2016 Antony Holmes",
         UIService.getInstance().loadIcon(ConversionIcon.class, 32),
-        UIService.getInstance().loadIcon(ConversionIcon.class, 128), "Convert gene symbols and ids.");
+        UIService.getInstance().loadIcon(ConversionIcon.class, 128),
+        "Convert gene symbols and ids.");
   }
 
 }

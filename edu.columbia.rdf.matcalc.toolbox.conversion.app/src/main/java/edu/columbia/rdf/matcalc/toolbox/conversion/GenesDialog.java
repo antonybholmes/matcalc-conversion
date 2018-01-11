@@ -43,7 +43,8 @@ import org.jebtk.modern.window.WindowWidgetFocusEvents;
 /**
  * The class PatternDiscoveryDialog.
  */
-public class GenesDialog extends ModernDialogHelpWindow implements ModernClickListener {
+public class GenesDialog extends ModernDialogHelpWindow
+    implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -55,9 +56,11 @@ public class GenesDialog extends ModernDialogHelpWindow implements ModernClickLi
    */
   private CheckBox mCheckSplit = new ModernCheckSwitch("Split hyphens");
 
-  private ModernRadioButton mRadioConvFromHuman = new ModernRadioButton("Human");
+  private ModernRadioButton mRadioConvFromHuman = new ModernRadioButton(
+      "Human");
 
-  private ModernRadioButton mRadioConvFromMouse = new ModernRadioButton("Mouse");
+  private ModernRadioButton mRadioConvFromMouse = new ModernRadioButton(
+      "Mouse");
 
   private ModernRadioButton mRadioConvToHuman = new ModernRadioButton("Human");
 
@@ -69,7 +72,8 @@ public class GenesDialog extends ModernDialogHelpWindow implements ModernClickLi
 
   private CheckBox mCheckRefSeq = new ModernCheckSwitch("RefSeq ID");
 
-  private CheckBox mCheckEnsemblTranscript = new ModernCheckSwitch("Ensembl Transcript");
+  private CheckBox mCheckEnsemblTranscript = new ModernCheckSwitch(
+      "Ensembl Transcript");
 
   private CheckBox mCheckEnsemblGene = new ModernCheckSwitch("Ensembl Gene");
 
@@ -77,17 +81,15 @@ public class GenesDialog extends ModernDialogHelpWindow implements ModernClickLi
 
   private CheckBox mCheckStrand = new ModernCheckSwitch("Strand");
 
-  private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions", true);
+  private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions",
+      true);
 
   /**
    * Instantiates a new pattern discovery dialog.
    *
-   * @param parent
-   *          the parent
-   * @param matrix
-   *          the matrix
-   * @param groups
-   *          the groups
+   * @param parent the parent
+   * @param matrix the matrix
+   * @param groups the groups
    */
   public GenesDialog(ModernWindow parent) {
     super(parent, "genes.help.url");

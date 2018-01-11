@@ -42,7 +42,6 @@ import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.text.Join;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.math.matrix.DataFrame;
-import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogStatus;
@@ -52,6 +51,7 @@ import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.RunVectorIcon;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.widget.tooltip.ModernToolTip;
+
 import edu.columbia.rdf.matcalc.MainMatCalcWindow;
 import edu.columbia.rdf.matcalc.toolbox.CalcModule;
 
@@ -63,7 +63,8 @@ import edu.columbia.rdf.matcalc.toolbox.CalcModule;
  * @author Antony Holmes Holmes
  *
  */
-public class ConversionModule extends CalcModule implements ModernClickListener {
+public class ConversionModule extends CalcModule
+    implements ModernClickListener {
 
   // private static final Path MOUSE_HUMAN_FILE =
   // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse-human-conversion");
@@ -151,7 +152,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.apps.matcalc.modules.Module#init(edu.columbia.rdf.apps.
+   * @see
+   * edu.columbia.rdf.apps.matcalc.modules.Module#init(edu.columbia.rdf.apps.
    * matcalc.MainMatCalcWindow)
    */
   @Override
@@ -159,10 +161,12 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     mWindow = window;
 
     // home
-    mConvertButton.setToolTip(new ModernToolTip("Convert", "Append gene conversions."),
+    mConvertButton.setToolTip(
+        new ModernToolTip("Convert", "Append gene conversions."),
         mWindow.getRibbon().getToolTipModel());
     mConvertButton.setClickMessage("Append");
-    mWindow.getRibbon().getToolbar("Genomic").getSection("Annotation").add(mConvertButton);
+    mWindow.getRibbon().getToolbar("Genomic").getSection("Annotation")
+        .add(mConvertButton);
 
     mConvertButton.addClickListener(this);
   }
@@ -171,8 +175,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * (non-Javadoc)
    * 
    * @see
-   * org.abh.lib.ui.modern.event.ModernClickListener#clicked(org.abh.lib.ui.modern
-   * .event.ModernClickEvent)
+   * org.abh.lib.ui.modern.event.ModernClickListener#clicked(org.abh.lib.ui.
+   * modern .event.ModernClickEvent)
    */
   @Override
   public final void clicked(ModernClickEvent e) {
@@ -189,7 +193,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     int col = mWindow.getSelectedColumn();
 
     if (col == Integer.MIN_VALUE) {
-      ModernMessageDialog.createDialog(mWindow, "You must select a column of gene ids or symbols.",
+      ModernMessageDialog.createDialog(mWindow,
+          "You must select a column of gene ids or symbols.",
           MessageDialogType.WARNING);
 
       return;
@@ -217,13 +222,15 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     /*
      * Map<String, String> idToSymbolHumanMap = new HashMap<String, String>();
      * 
-     * Map<String, String> oldIdToSymbolHumanMap = new HashMap<String, String>();
+     * Map<String, String> oldIdToSymbolHumanMap = new HashMap<String,
+     * String>();
      * 
      * Map<String, String> symbolChrHumanMap = new HashMap<String, String>();
      * 
      * Map<String, String> symbolStrandHumanMap = new HashMap<String, String>();
      * 
-     * Map<String, String> officialSymbolHumanMap = new HashMap<String, String>();
+     * Map<String, String> officialSymbolHumanMap = new HashMap<String,
+     * String>();
      * 
      * Map<String, Collection<String>> symbolEnsemblTranscriptHumanMap =
      * DefaultHashMap.create(new TreeSetCreator<String>());
@@ -251,9 +258,9 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
      */
 
     /*
-     * // We can load extra information from HUGO to help with the // conversions
-     * loadHugoMap(HUGO_FILE, idToSymbolHumanMap, oldIdToSymbolHumanMap,
-     * officialSymbolHumanMap);
+     * // We can load extra information from HUGO to help with the //
+     * conversions loadHugoMap(HUGO_FILE, idToSymbolHumanMap,
+     * oldIdToSymbolHumanMap, officialSymbolHumanMap);
      */
 
     /*
@@ -268,9 +275,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     /*
      * Map<String, String> idToSymbolMouseMap = new HashMap<String, String>();
      * 
-     * Map<String, String> oldIdToSymbolMouseMap = new HashMap<String, String>();
+     * Map<String, String> oldIdToSymbolMouseMap = new HashMap<String,
+     * String>();
      * 
-     * Map<String, String> officialSymbolMouseMap = new HashMap<String, String>();
+     * Map<String, String> officialSymbolMouseMap = new HashMap<String,
+     * String>();
      * 
      * Map<String, String> symbolChrMouseMap = new HashMap<String, String>();
      * 
@@ -323,7 +332,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     // GenesService.getInstance().getConversionMap().
     // }
 
-    // if (dialog.getOutputEnsemblGene() || dialog.getOutputEnsemblTranscript()) {
+    // if (dialog.getOutputEnsemblGene() || dialog.getOutputEnsemblTranscript())
+    // {
     // GenesService.getInstance().autoLoadEnsembl();
     // }
 
@@ -424,20 +434,22 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
           // Human
 
           /*
-           * convert(id, dialog.getSplit(), idToSymbolHumanMap, oldIdToSymbolHumanMap,
-           * symbolChrHumanMap, symbols);
+           * convert(id, dialog.getSplit(), idToSymbolHumanMap,
+           * oldIdToSymbolHumanMap, symbolChrHumanMap, symbols);
            */
 
-          GenesService.getInstance().getHumanMap().convert(fromSymbol, dialog.getSplit(), toSymbols);
+          GenesService.getInstance().getHumanMap()
+              .convert(fromSymbol, dialog.getSplit(), toSymbols);
 
         } else {
           // Mouse
           /*
-           * convert(id, dialog.getSplit(), idToSymbolMouseMap, null, symbolChrMouseMap,
-           * symbols);
+           * convert(id, dialog.getSplit(), idToSymbolMouseMap, null,
+           * symbolChrMouseMap, symbols);
            */
 
-          GenesService.getInstance().getMouseMap().convert(fromSymbol, dialog.getSplit(), toSymbols);
+          GenesService.getInstance().getMouseMap()
+              .convert(fromSymbol, dialog.getSplit(), toSymbols);
         }
       } else {
         // Converting between mouse and human
@@ -447,22 +459,30 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
           /*
            * convertBetweenSpecies(id, dialog.getSplit(), humanMouseMap,
            * idToSymbolHumanMap, oldIdToSymbolHumanMap, symbolChrHumanMap,
-           * idToSymbolMouseMap, oldIdToSymbolMouseMap, symbolChrMouseMap, symbols);
+           * idToSymbolMouseMap, oldIdToSymbolMouseMap, symbolChrMouseMap,
+           * symbols);
            */
 
-          convertBetweenSpecies(fromSymbol, dialog.getSplit(), GenesService.getInstance().getHumanMap(),
-              GenesService.getInstance().getMouseMap(), GenesService.getInstance().getHomologyMap().humanToMouse(),
+          convertBetweenSpecies(fromSymbol,
+              dialog.getSplit(),
+              GenesService.getInstance().getHumanMap(),
+              GenesService.getInstance().getMouseMap(),
+              GenesService.getInstance().getHomologyMap().humanToMouse(),
               toSymbols);
         } else {
           // To human
           /*
            * convertBetweenSpecies(id, dialog.getSplit(), mouseHumanMap,
            * idToSymbolMouseMap, oldIdToSymbolMouseMap, symbolChrMouseMap,
-           * idToSymbolHumanMap, oldIdToSymbolHumanMap, symbolChrHumanMap, symbols);
+           * idToSymbolHumanMap, oldIdToSymbolHumanMap, symbolChrHumanMap,
+           * symbols);
            */
 
-          convertBetweenSpecies(fromSymbol, dialog.getSplit(), GenesService.getInstance().getMouseMap(),
-              GenesService.getInstance().getHumanMap(), GenesService.getInstance().getHomologyMap().mouseToHuman(),
+          convertBetweenSpecies(fromSymbol,
+              dialog.getSplit(),
+              GenesService.getInstance().getMouseMap(),
+              GenesService.getInstance().getHumanMap(),
+              GenesService.getInstance().getHomologyMap().mouseToHuman(),
               toSymbols);
         }
       }
@@ -473,7 +493,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         String o = TextUtils.NA;
 
         if (toSymbols.size() > 0) {
-          o = convert(humanMap, mouseMap, toSymbols, GenesMap.SYMBOL_TYPE, dialog.getConvToHuman());
+          o = convert(humanMap,
+              mouseMap,
+              toSymbols,
+              GenesMap.SYMBOL_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, o);
@@ -485,7 +509,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          entrez = convert(humanMap, mouseMap, symbol, GenesMap.ENTREZ_TYPE, dialog.getConvToHuman());
+          entrez = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.ENTREZ_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, entrez);
@@ -497,7 +525,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          refSeq = convert(humanMap, mouseMap, symbol, GenesMap.REFSEQ_TYPE, dialog.getConvToHuman());
+          refSeq = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.REFSEQ_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, refSeq);
@@ -509,7 +541,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          ensembl = convert(humanMap, mouseMap, symbol, GenesMap.ENSEMBL_GENE_TYPE, dialog.getConvToHuman());
+          ensembl = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.ENSEMBL_GENE_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, ensembl);
@@ -521,7 +557,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          ensembl = convert(humanMap, mouseMap, symbol, GenesMap.ENSEMBL_TRANSCRIPT_TYPE, dialog.getConvToHuman());
+          ensembl = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.ENSEMBL_TRANSCRIPT_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, ensembl);
@@ -533,7 +573,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          chr = convert(humanMap, mouseMap, symbol, GenesMap.CHR_TYPE, dialog.getConvToHuman());
+          chr = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.CHR_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, chr);
@@ -545,7 +589,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
 
-          strand = convert(humanMap, mouseMap, symbol, GenesMap.STRAND_TYPE, dialog.getConvToHuman());
+          strand = convert(humanMap,
+              mouseMap,
+              symbol,
+              GenesMap.STRAND_TYPE,
+              dialog.getConvToHuman());
         }
 
         ret.set(i, c++, strand);
@@ -553,7 +601,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 
       if (dialog.getOutputConversions()) {
         if (toSymbols.size() > 0) {
-          ret.set(i, c++, conversions(toSymbols)); // convert(symbols, officialSymbolHumanMap));
+          ret.set(i, c++, conversions(toSymbols)); // convert(symbols,
+                                                   // officialSymbolHumanMap));
         } else {
           ret.set(i, c++, TextUtils.NA);
         }
@@ -563,27 +612,37 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
     mWindow.addToHistory("Gene Conversion", ret);
   }
 
-  private static String convert(GenesMap humanMap, GenesMap mouseMap, Conversion symbol, String type,
+  private static String convert(GenesMap humanMap,
+      GenesMap mouseMap,
+      Conversion symbol,
+      String type,
       boolean convToHuman) {
     String ret;
 
     if (convToHuman) {
-      ret = format(humanMap.getMappings(symbol, type)); // formatSymbolToIds(symbol, symbolEnsemblTranscriptHumanMap);
+      ret = format(humanMap.getMappings(symbol, type)); // formatSymbolToIds(symbol,
+                                                        // symbolEnsemblTranscriptHumanMap);
     } else {
-      ret = format(mouseMap.getMappings(symbol, type)); // formatSymbolToIds(symbol, symbolEnsemblTranscriptMouseMap);
+      ret = format(mouseMap.getMappings(symbol, type)); // formatSymbolToIds(symbol,
+                                                        // symbolEnsemblTranscriptMouseMap);
     }
 
     return ret;
   }
 
-  private static String convert(GenesMap humanMap, GenesMap mouseMap, Set<Conversion> symbols, String type,
+  private static String convert(GenesMap humanMap,
+      GenesMap mouseMap,
+      Set<Conversion> symbols,
+      String type,
       boolean convToHuman) {
     String ret;
 
     if (convToHuman) {
-      ret = format(humanMap.getMappings(symbols, type)); // formatSymbolToIds(symbol, symbolEnsemblTranscriptHumanMap);
+      ret = format(humanMap.getMappings(symbols, type)); // formatSymbolToIds(symbol,
+                                                         // symbolEnsemblTranscriptHumanMap);
     } else {
-      ret = format(mouseMap.getMappings(symbols, type)); // formatSymbolToIds(symbol, symbolEnsemblTranscriptMouseMap);
+      ret = format(mouseMap.getMappings(symbols, type)); // formatSymbolToIds(symbol,
+                                                         // symbolEnsemblTranscriptMouseMap);
     }
 
     return ret;
@@ -617,8 +676,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * 
    * @param file
    * @param idToSymbolMap
-   * @param oldIdToSymbolMap
-   *          Will contain old symbol names mapping to their newest.
+   * @param oldIdToSymbolMap Will contain old symbol names mapping to their
+   *          newest.
    * @param officalMap
    * @throws IOException
    */
@@ -653,13 +712,13 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * 
    * // // Deal with older mappings //
    * 
-   * for (String previous : TextUtils.toLowerCase(splitter2.text(tokens.get(3))))
-   * { if (!previous.equals(TextUtils.NA)) { oldIdToSymbolMap.put(previous, ls); }
-   * }
+   * for (String previous :
+   * TextUtils.toLowerCase(splitter2.text(tokens.get(3)))) { if
+   * (!previous.equals(TextUtils.NA)) { oldIdToSymbolMap.put(previous, ls); } }
    * 
-   * for (String synonym : TextUtils.toLowerCase(splitter2.text(tokens.get(4)))) {
-   * if (!synonym.equals(TextUtils.NA)) { oldIdToSymbolMap.put(synonym, ls); } } }
-   * } finally { reader.close(); } }
+   * for (String synonym : TextUtils.toLowerCase(splitter2.text(tokens.get(4))))
+   * { if (!synonym.equals(TextUtils.NA)) { oldIdToSymbolMap.put(synonym, ls); }
+   * } } } finally { reader.close(); } }
    */
 
   /**
@@ -668,8 +727,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * 
    * @param geneInfoFile
    * @param idToSymbolMap
-   * @param oldIdToSymbolMap
-   *          Will contain old symbol names mapping to their newest.
+   * @param oldIdToSymbolMap Will contain old symbol names mapping to their
+   *          newest.
    * @param officalMap
    * @throws IOException
    */
@@ -729,8 +788,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * // The old symbol symbol = tokens.get(3); ls = symbol.toLowerCase();
    * 
    * if (entrezMap.containsKey(entrez)) { oldIdToSymbolMap.put(oldEntrez,
-   * entrezMap.get(entrez)); oldIdToSymbolMap.put(ls, entrezMap.get(entrez)); } }
-   * } finally { reader.close(); }
+   * entrezMap.get(entrez)); oldIdToSymbolMap.put(ls, entrezMap.get(entrez)); }
+   * } } finally { reader.close(); }
    * 
    * reader = Resources.getGzipReader(geneRefseqFile);
    * 
@@ -750,11 +809,11 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    */
 
   /*
-   * private static void loadNcbiMap(Path file, Map<String, String> idToSymbolMap,
-   * Map<String, String> officialMap, Map<String, Collection<String>>
-   * symbolRefSeqMap, Map<String, Collection<String>> symbolEntrezMap) throws
-   * IOException { BufferedReader reader = Resources.getGzipReader(file); String
-   * line; List<String> tokens;
+   * private static void loadNcbiMap(Path file, Map<String, String>
+   * idToSymbolMap, Map<String, String> officialMap, Map<String,
+   * Collection<String>> symbolRefSeqMap, Map<String, Collection<String>>
+   * symbolEntrezMap) throws IOException { BufferedReader reader =
+   * Resources.getGzipReader(file); String line; List<String> tokens;
    * 
    * try { // Skip header reader.readLine();
    * 
@@ -802,8 +861,9 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    */
 
   /**
-   * Converts primary symbol ids back to a string of other ids, for example symbol
-   * to Entrez ids. Returns Ids as a semi-colon separated string of sorted terms.
+   * Converts primary symbol ids back to a string of other ids, for example
+   * symbol to Entrez ids. Returns Ids as a semi-colon separated string of
+   * sorted terms.
    * 
    * @param symbol
    * @param symbolToIdMap
@@ -834,16 +894,17 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * if (symbols.size() == 0) { // OK, might be an old symbol name
    * 
    * // As a backup, check the old symbols if (oldIdToSymbolMap != null) { if
-   * (oldIdToSymbolMap.containsKey(id)) { symbols.add(oldIdToSymbolMap.get(id)); }
-   * } }
+   * (oldIdToSymbolMap.containsKey(id)) { symbols.add(oldIdToSymbolMap.get(id));
+   * } } }
    * 
    * if (symbols.size() == 0) { // See if its a loc problem
    * 
    * if (id.startsWith("loc")) { id = id.substring(3); }
    * 
    * if (idToSymbolMap.containsKey(id)) { symbols.add(idToSymbolMap.get(id)); }
-   * else { if (oldIdToSymbolMap != null) { if (oldIdToSymbolMap.containsKey(id))
-   * { symbols.add(oldIdToSymbolMap.get(id)); } } } }
+   * else { if (oldIdToSymbolMap != null) { if
+   * (oldIdToSymbolMap.containsKey(id)) { symbols.add(oldIdToSymbolMap.get(id));
+   * } } } }
    * 
    * if (symbols.size() == 0) { if (split) { // Consider splitting the id to see
    * if it is made up // of a two gene symbols separated by a dash
@@ -881,25 +942,28 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
 
   /**
    * Converts an id between species and then populates the symbol set with lower
-   * case gene symbols reflecting the genes that the id maps to. If the id cannot
-   * be converted, null will be returned. Note that species conversion requires
-   * that the id be either a gene symbol
+   * case gene symbols reflecting the genes that the id maps to. If the id
+   * cannot be converted, null will be returned. Note that species conversion
+   * requires that the id be either a gene symbol
    * 
    * @param id
    * @param split
    * @param humanMouseMap
    * @param idToSymbolFromMap
-   * @param oldIdToSymbolFromMap
-   *          A secondary mapping between old symbols and new. This can be null if
-   *          no such mapping exists.
+   * @param oldIdToSymbolFromMap A secondary mapping between old symbols and
+   *          new. This can be null if no such mapping exists.
    * @param symbolChrFromMap
    * @param idToSymbolToMap
    * @param oldIdToSymbolToMap
    * @param symbolChrToMap
    * @param symbols
    */
-  private void convertBetweenSpecies(final Conversion id, boolean split, GenesMap fromMap, GenesMap toMap,
-      final HomologyMap homologyMap, Set<Conversion> symbols) {
+  private void convertBetweenSpecies(final Conversion id,
+      boolean split,
+      GenesMap fromMap,
+      GenesMap toMap,
+      final HomologyMap homologyMap,
+      Set<Conversion> symbols) {
 
     // First convert the id to a lower case gene symbol in its own
     // species to make sure names are up to date etc.
@@ -914,7 +978,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
         List<Conversion> homologySymbols = homologyMap.homology(symbol);
 
         for (Conversion c : homologySymbols) {
-          // System.err.println("conv " + symbol.getId() + " " + c.getId() + " " +
+          // System.err.println("conv " + symbol.getId() + " " + c.getId() + " "
+          // +
           // c.getType());
 
           // Use the translated symbol for the conversion
@@ -937,13 +1002,13 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * idToSymbolToMap, final Map<String, String> oldIdToSymbolToMap, final
    * Map<String, String> symbolChrToMap, Set<String> symbols) {
    * 
-   * // First convert the id to a lower case gene symbol in its own // species to
-   * make sure names are uptodate etc.
+   * // First convert the id to a lower case gene symbol in its own // species
+   * to make sure names are uptodate etc.
    * 
    * Set<String> fromSymbols = new HashSet<String>();
    * 
-   * convert(id, split, idToSymbolFromMap, oldIdToSymbolFromMap, symbolChrFromMap,
-   * fromSymbols);
+   * convert(id, split, idToSymbolFromMap, oldIdToSymbolFromMap,
+   * symbolChrFromMap, fromSymbols);
    * 
    * if (id.contains("1110007c09rik")) { System.err.println("conv " + id + " " +
    * oldIdToSymbolFromMap.containsKey(id)); }
@@ -972,20 +1037,22 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * while ((line = reader.readLine()) != null) { tokens =
    * Splitter.onTab().text(line);
    * 
-   * if (hid == null || !tokens.get(0).equals(hid)) { // Each time we encounter a
-   * new species group, reset // the mapping humanEntrez = null; humanSymbol =
-   * null; humanRefseq = null; mouseEntrez = null; mouseSymbol = null; mouseRefseq
-   * = null;
+   * if (hid == null || !tokens.get(0).equals(hid)) { // Each time we encounter
+   * a new species group, reset // the mapping humanEntrez = null; humanSymbol =
+   * null; humanRefseq = null; mouseEntrez = null; mouseSymbol = null;
+   * mouseRefseq = null;
    * 
    * hid = tokens.get(0); }
    * 
    * // Human if (tokens.get(1).equals("9606")) { humanEntrez = tokens.get(2);
    * humanSymbol = tokens.get(3).toLowerCase(); humanRefseq =
-   * tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING); }
+   * tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING);
+   * }
    * 
    * // Mouse if (tokens.get(1).equals("10090")) { mouseEntrez = tokens.get(2);
    * mouseSymbol = tokens.get(3).toLowerCase(); mouseRefseq =
-   * tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING); }
+   * tokens.get(5).toLowerCase().replaceFirst("\\..+", TextUtils.EMPTY_STRING);
+   * }
    * 
    * 
    * if (humanSymbol != null && mouseSymbol != null) { // If both the human and
@@ -1004,7 +1071,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * Collection<String>> symbolIdMap1, Map<String, Collection<String>>
    * symbolIdMap2) throws IOException { String line; List<String> tokens;
    * 
-   * String id1; String id2; String symbol; String ls; String chr; String strand;
+   * String id1; String id2; String symbol; String ls; String chr; String
+   * strand;
    * 
    * BufferedReader reader = Resources.getGzipReader(file);
    * 
@@ -1017,8 +1085,8 @@ public class ConversionModule extends CalcModule implements ModernClickListener 
    * id1 = tokens.get(0); id2 = tokens.get(1); symbol = tokens.get(2); ls =
    * symbol.toLowerCase(); chr = tokens.get(3); strand = tokens.get(4);
    * 
-   * officalMap.put(ls, symbol); idToSymbolMap.put(ls, ls); idToSymbolMap.put(id1,
-   * ls); idToSymbolMap.put(id2, ls);
+   * officalMap.put(ls, symbol); idToSymbolMap.put(ls, ls);
+   * idToSymbolMap.put(id1, ls); idToSymbolMap.put(id2, ls);
    * 
    * symbolChrMap.put(ls, chr); symbolStrandMap.put(ls, strand);
    * 

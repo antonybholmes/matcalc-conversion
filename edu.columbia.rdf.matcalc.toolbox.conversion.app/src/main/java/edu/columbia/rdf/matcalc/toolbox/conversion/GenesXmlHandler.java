@@ -53,7 +53,10 @@ public class GenesXmlHandler extends DefaultHandler {
    * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
    * java.lang.String, java.lang.String, org.xml.sax.Attributes)
    */
-  public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+  public void startElement(String uri,
+      String localName,
+      String qName,
+      Attributes attributes) throws SAXException {
     if (qName.equals("genes")) {
       try {
         mTaxtId = Parser.toInt(attributes.getValue("tax_id"));
@@ -84,7 +87,8 @@ public class GenesXmlHandler extends DefaultHandler {
    * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
    * java.lang.String, java.lang.String)
    */
-  public void endElement(String uri, String localName, String qName) throws SAXException {
+  public void endElement(String uri, String localName, String qName)
+      throws SAXException {
 
   }
 }
