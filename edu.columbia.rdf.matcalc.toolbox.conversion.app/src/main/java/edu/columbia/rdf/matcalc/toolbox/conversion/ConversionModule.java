@@ -162,8 +162,7 @@ public class ConversionModule extends CalcModule
 
     // home
     mConvertButton.setToolTip(
-        new ModernToolTip("Convert", "Append gene conversions."),
-        mWindow.getRibbon().getToolTipModel());
+        new ModernToolTip("Convert", "Append gene conversions."));
     mConvertButton.setClickMessage("Append");
     mWindow.getRibbon().getToolbar("Genomic").getSection("Annotation")
         .add(mConvertButton);
