@@ -39,7 +39,7 @@ import org.jebtk.modern.theme.ThemeService;
 import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.matcalc.MainMatCalc;
-import edu.columbia.rdf.matcalc.ModuleLoader;
+import edu.columbia.rdf.matcalc.BasicModuleLoader;
 import edu.columbia.rdf.matcalc.bio.BioModuleLoader;
 import edu.columbia.rdf.matcalc.toolbox.conversion.ConversionModule;
 
@@ -55,7 +55,7 @@ public class MainConversion {
 
     ThemeService.getInstance().setTheme(ColorTheme.GREEN);
 
-    ModuleLoader ml = new BioModuleLoader().addModule(ConversionModule.class);
+    BasicModuleLoader ml = new BioModuleLoader().addModule(ConversionModule.class);
 
     MainMatCalc.main(new ConversionInfo(), ml);
   }
