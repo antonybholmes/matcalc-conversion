@@ -142,16 +142,6 @@ public class ConversionModule extends CalcModule
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.apps.matcalc.modules.Module#run(java.lang.String[])
-   */
-  @Override
-  public void run(String... args) {
-    // Do nothing
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
    * @see
    * edu.columbia.rdf.apps.matcalc.modules.Module#init(edu.columbia.rdf.apps.
    * matcalc.MainMatCalcWindow)
