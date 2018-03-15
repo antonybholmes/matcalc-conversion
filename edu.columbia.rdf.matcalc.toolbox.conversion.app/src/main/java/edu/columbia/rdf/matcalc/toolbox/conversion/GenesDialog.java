@@ -158,7 +158,7 @@ public class GenesDialog extends ModernDialogHelpWindow
     box.add(mCheckStrand);
     // box2.add(UI.createVGap(5));
 
-    setDialogCardContent(box);
+    setCard(box);
   }
 
   public boolean getOutputSymbols() {
