@@ -1,3 +1,18 @@
+/**
+ * Copyright 2018 Antony Holmes
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
 import java.io.BufferedReader;
@@ -20,10 +35,18 @@ import org.jebtk.core.text.Splitter;
 import org.jebtk.core.text.TextUtils;
 import org.xml.sax.SAXException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeciesHomologyMap.
+ */
 public class SpeciesHomologyMap {
 
+  /** The m conversion map. */
   private Map<Integer, IterMap<Integer, HomologyMap>> mConversionMap;
 
+  /**
+   * Instantiates a new species homology map.
+   */
   public SpeciesHomologyMap() {
     mConversionMap = DefaultHashMap
         .create(new DefaultHashMapCreator<Integer, HomologyMap>(
@@ -35,20 +58,43 @@ public class SpeciesHomologyMap {
             }));
   }
 
+  /**
+   * Human to mouse.
+   *
+   * @return the homology map
+   */
   public HomologyMap humanToMouse() {
     return mConversionMap.get(GenesService.HUMAN_TAX_ID)
         .get(GenesService.MOUSE_TAX_ID);
   }
 
+  /**
+   * Mouse to human.
+   *
+   * @return the homology map
+   */
   public HomologyMap mouseToHuman() {
     return mConversionMap.get(GenesService.MOUSE_TAX_ID)
         .get(GenesService.HUMAN_TAX_ID);
   }
 
+  /**
+   * Gets the map.
+   *
+   * @param fromTaxId the from tax id
+   * @param toTaxId the to tax id
+   * @return the map
+   */
   public HomologyMap getMap(int fromTaxId, int toTaxId) {
     return mConversionMap.get(fromTaxId).get(toTaxId);
   }
 
+  /**
+   * Load ncbi.
+   *
+   * @param file the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public void loadNcbi(final Path file) throws IOException {
     BufferedReader reader = Resources.getGzipReader(file);
     String line;
@@ -122,6 +168,15 @@ public class SpeciesHomologyMap {
     }
   }
 
+  /**
+   * Parses the genes xml gz.
+   *
+   * @param file the file
+   * @param speciesMap the species map
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   public static void parseGenesXmlGz(Path file, SpeciesHomologyMap speciesMap)
       throws IOException, ParserConfigurationException, SAXException {
     InputStream stream = Resources.getGzipInputStream(file);
@@ -133,6 +188,15 @@ public class SpeciesHomologyMap {
     }
   }
 
+  /**
+   * Parses the homology xml.
+   *
+   * @param is the is
+   * @param speciesMap the species map
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static void parseHomologyXml(InputStream is,
       SpeciesHomologyMap speciesMap)
       throws ParserConfigurationException, SAXException, IOException {

@@ -34,15 +34,29 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class KeyXmlHandler.
  */
 public class GenesXmlHandler extends DefaultHandler {
 
+  /** The m symbol. */
   private String mSymbol;
+  
+  /** The m species map. */
   private SpeciesGenesMap mSpeciesMap;
+  
+  /** The m taxt id. */
   private int mTaxtId;
+  
+  /** The m chr. */
+  private String mChr;
 
+  /**
+   * Instantiates a new genes xml handler.
+   *
+   * @param speciesMap the species map
+   */
   public GenesXmlHandler(SpeciesGenesMap speciesMap) {
     mSpeciesMap = speciesMap;
   }
@@ -65,6 +79,7 @@ public class GenesXmlHandler extends DefaultHandler {
       }
     } else if (qName.equals("gene")) {
       mSymbol = attributes.getValue("symbol");
+      //mChr = attributes.getValue("chr");
     } else if (qName.equals("mapping")) {
       String name = attributes.getValue("name");
       String type = attributes.getValue("type");

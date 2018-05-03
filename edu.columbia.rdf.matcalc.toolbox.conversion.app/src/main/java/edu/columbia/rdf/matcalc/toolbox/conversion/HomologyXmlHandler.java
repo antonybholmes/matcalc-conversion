@@ -39,17 +39,29 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class KeyXmlHandler.
  */
 public class HomologyXmlHandler extends DefaultHandler {
 
+  /** The m symbol. */
   private String mSymbol;
+  
+  /** The m species map. */
   private SpeciesHomologyMap mSpeciesMap;
+  
+  /** The m id map. */
   private Map<Integer, IterMap<String, IterMap<String, String>>> mIdMap;
 
+  /** The m tax id. */
   private int mTaxId;
 
+  /**
+   * Instantiates a new homology xml handler.
+   *
+   * @param speciesMap the species map
+   */
   public HomologyXmlHandler(SpeciesHomologyMap speciesMap) {
     mSpeciesMap = speciesMap;
 

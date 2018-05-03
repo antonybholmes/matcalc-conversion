@@ -37,12 +37,18 @@ import org.jebtk.core.io.FileUtils;
 import org.jebtk.core.io.PathUtils;
 import org.xml.sax.SAXException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class MotifsDBService.
  */
 public class GenesService {
 
+  /**
+   * The Class GenesServiceLoader.
+   */
   private static class GenesServiceLoader {
+    
+    /** The Constant INSTANCE. */
     private static final GenesService INSTANCE = new GenesService();
   }
 
@@ -55,8 +61,10 @@ public class GenesService {
     return GenesServiceLoader.INSTANCE;
   }
 
+  /** The Constant HUMAN_TAX_ID. */
   public static final int HUMAN_TAX_ID = 9606;
 
+  /** The Constant MOUSE_TAX_ID. */
   public static final int MOUSE_TAX_ID = 10090;
 
   /**
@@ -64,14 +72,19 @@ public class GenesService {
    */
   private SpeciesGenesMap mSpeciesMap = new SpeciesGenesMap();
 
+  /** The m homology map. */
   private SpeciesHomologyMap mHomologyMap = new SpeciesHomologyMap();
 
+  /** The m auto load. */
   private boolean mAutoLoad = true;
 
+  /** The m auto load homology. */
   private boolean mAutoLoadHomology = true;
 
+  /** The Constant GENES_DIR. */
   private static final Path GENES_DIR = PathUtils.getPath("res/modules/genes");
 
+  /** The Constant HOMOLOGY_DIR. */
   private static final Path HOMOLOGY_DIR = PathUtils
       .getPath("res/modules/genes/homology");
 
@@ -82,10 +95,20 @@ public class GenesService {
     // do nothing
   }
 
+  /**
+   * Gets the map.
+   *
+   * @return the map
+   */
   public SpeciesGenesMap getMap() {
     return mSpeciesMap;
   }
 
+  /**
+   * Gets the homology map.
+   *
+   * @return the homology map
+   */
   public SpeciesHomologyMap getHomologyMap() {
     try {
       autoLoadHomology();
@@ -103,8 +126,8 @@ public class GenesService {
   /**
    * Adds the back end.
    *
-   * @param motifsDb the motifs db
-   * @return
+   * @param taxId the tax id
+   * @return the map
    */
   public GenesMap getMap(int taxId) {
     try {
@@ -120,19 +143,44 @@ public class GenesService {
     return mSpeciesMap.getMap(taxId);
   }
 
+  /**
+   * Gets the human map.
+   *
+   * @return the human map
+   */
   public GenesMap getHumanMap() {
     return getMap(HUMAN_TAX_ID);
   }
 
+  /**
+   * Gets the mouse map.
+   *
+   * @return the mouse map
+   */
   public GenesMap getMouseMap() {
     return getMap(MOUSE_TAX_ID);
   }
 
+  /**
+   * Load xml.
+   *
+   * @param file the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   public void loadXml(Path file)
       throws IOException, ParserConfigurationException, SAXException {
     SpeciesGenesMap.parseGenesXmlGz(file, mSpeciesMap);
   }
 
+  /**
+   * Auto load.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   private void autoLoad()
       throws IOException, ParserConfigurationException, SAXException {
     if (mAutoLoad) {
@@ -144,6 +192,13 @@ public class GenesService {
     }
   }
 
+  /**
+   * Auto load xml.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   private void autoLoadXml()
       throws IOException, ParserConfigurationException, SAXException {
     List<Path> files = FileUtils.findAll(GENES_DIR, "xml.gz");
@@ -153,6 +208,13 @@ public class GenesService {
     }
   }
 
+  /**
+   * Auto load homology.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   private void autoLoadHomology()
       throws IOException, ParserConfigurationException, SAXException {
     if (mAutoLoadHomology) {
@@ -162,6 +224,13 @@ public class GenesService {
     }
   }
 
+  /**
+   * Load homology xml.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   private void loadHomologyXml()
       throws IOException, ParserConfigurationException, SAXException {
     List<Path> files = FileUtils.findAll(HOMOLOGY_DIR, "xml.gz");
@@ -171,6 +240,14 @@ public class GenesService {
     }
   }
 
+  /**
+   * Load homology xml.
+   *
+   * @param file the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   */
   public void loadHomologyXml(Path file)
       throws IOException, ParserConfigurationException, SAXException {
     SpeciesHomologyMap.parseGenesXmlGz(file, mHomologyMap);

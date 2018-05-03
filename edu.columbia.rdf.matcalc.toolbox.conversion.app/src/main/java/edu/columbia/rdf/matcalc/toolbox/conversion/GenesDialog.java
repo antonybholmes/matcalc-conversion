@@ -40,6 +40,7 @@ import org.jebtk.modern.panel.VBox;
 import org.jebtk.modern.window.ModernWindow;
 import org.jebtk.modern.window.WindowWidgetFocusEvents;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class PatternDiscoveryDialog.
  */
@@ -56,40 +57,53 @@ public class GenesDialog extends ModernDialogHelpWindow
    */
   private CheckBox mCheckSplit = new ModernCheckSwitch("Split hyphens");
 
+  /** The m radio conv from human. */
   private ModernRadioButton mRadioConvFromHuman = new ModernRadioButton(
       "Human");
 
+  /** The m radio conv from mouse. */
   private ModernRadioButton mRadioConvFromMouse = new ModernRadioButton(
       "Mouse");
 
+  /** The m radio conv to human. */
   private ModernRadioButton mRadioConvToHuman = new ModernRadioButton("Human");
 
+  /** The m radio conv to mouse. */
   private ModernRadioButton mRadioConvToMouse = new ModernRadioButton("Mouse");
 
+  /** The m check symbol. */
   private CheckBox mCheckSymbol = new ModernCheckSwitch("Symbol", true);
 
+  /** The m check entrez. */
   private CheckBox mCheckEntrez = new ModernCheckSwitch("Entrez ID");
 
+  /** The m check ref seq. */
   private CheckBox mCheckRefSeq = new ModernCheckSwitch("RefSeq ID");
 
+  /** The m check ensembl transcript. */
   private CheckBox mCheckEnsemblTranscript = new ModernCheckSwitch(
       "Ensembl Transcript");
 
+  /** The m check ensembl gene. */
   private CheckBox mCheckEnsemblGene = new ModernCheckSwitch("Ensembl Gene");
 
+  /** The m check chr. */
   private CheckBox mCheckChr = new ModernCheckSwitch("Chromosome");
 
+  /** The m check strand. */
   private CheckBox mCheckStrand = new ModernCheckSwitch("Strand");
 
+  /** The m check conversions. */
   private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions",
+      true);
+  
+  private CheckBox mCheckKeepOld = new ModernCheckSwitch("Keep Old ID",
       true);
 
   /**
    * Instantiates a new pattern discovery dialog.
    *
    * @param parent the parent
-   * @param matrix the matrix
-   * @param groups the groups
    */
   public GenesDialog(ModernWindow parent) {
     super(parent, "genes.help.url");
@@ -113,7 +127,7 @@ public class GenesDialog extends ModernDialogHelpWindow
     mRadioConvFromHuman.doClick();
     mRadioConvToHuman.doClick();
 
-    setSize(540, 540);
+    setSize(540, 600);
 
     UI.centerWindowToScreen(this);
   }
@@ -157,59 +171,129 @@ public class GenesDialog extends ModernDialogHelpWindow
     // box2.add(UI.createVGap(5));
     box.add(mCheckStrand);
     // box2.add(UI.createVGap(5));
-
+    box.add(mCheckKeepOld);
+    
     setCard(box);
   }
 
+  /**
+   * Gets the output symbols.
+   *
+   * @return the output symbols
+   */
   public boolean getOutputSymbols() {
     return mCheckSymbol.isSelected();
   }
 
+  /**
+   * Gets the conv from human.
+   *
+   * @return the conv from human
+   */
   public boolean getConvFromHuman() {
     return mRadioConvFromHuman.isSelected();
   }
 
+  /**
+   * Gets the conv from mouse.
+   *
+   * @return the conv from mouse
+   */
   public boolean getConvFromMouse() {
     return mRadioConvFromMouse.isSelected();
   }
 
+  /**
+   * Gets the conv to human.
+   *
+   * @return the conv to human
+   */
   public boolean getConvToHuman() {
     return mRadioConvToHuman.isSelected();
   }
 
+  /**
+   * Gets the conv to mouse.
+   *
+   * @return the conv to mouse
+   */
   public boolean getConvToMouse() {
     return mRadioConvToMouse.isSelected();
   }
 
+  /**
+   * Gets the output chr.
+   *
+   * @return the output chr
+   */
   public boolean getOutputChr() {
     return mCheckChr.isSelected();
   }
 
+  /**
+   * Gets the output strand.
+   *
+   * @return the output strand
+   */
   public boolean getOutputStrand() {
     return mCheckStrand.isSelected();
   }
 
+  /**
+   * Gets the output entrez.
+   *
+   * @return the output entrez
+   */
   public boolean getOutputEntrez() {
     return mCheckEntrez.isSelected();
   }
 
+  /**
+   * Gets the output ref seq.
+   *
+   * @return the output ref seq
+   */
   public boolean getOutputRefSeq() {
     return mCheckRefSeq.isSelected();
   }
 
+  /**
+   * Gets the output ensembl gene.
+   *
+   * @return the output ensembl gene
+   */
   public boolean getOutputEnsemblGene() {
     return mCheckEnsemblGene.isSelected();
   }
 
+  /**
+   * Gets the output ensembl transcript.
+   *
+   * @return the output ensembl transcript
+   */
   public boolean getOutputEnsemblTranscript() {
     return mCheckEnsemblTranscript.isSelected();
   }
 
+  /**
+   * Gets the split.
+   *
+   * @return the split
+   */
   public boolean getSplit() {
     return mCheckSplit.isSelected();
   }
 
+  /**
+   * Gets the output conversions.
+   *
+   * @return the output conversions
+   */
   public boolean getOutputConversions() {
     return mCheckConversions.isSelected();
+  }
+
+  public boolean getKeepOld() {
+    return true;
   }
 }

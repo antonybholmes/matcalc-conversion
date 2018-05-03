@@ -36,7 +36,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
 
+import org.jebtk.bioinformatics.genomic.Chromosome;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.text.Join;
@@ -55,6 +57,7 @@ import org.jebtk.modern.tooltip.ModernToolTip;
 import edu.columbia.rdf.matcalc.MainMatCalcWindow;
 import edu.columbia.rdf.matcalc.toolbox.CalcModule;
 
+// TODO: Auto-generated Javadoc
 /**
  * Merges designated segments together using the merge column. Consecutive rows
  * with the same merge id will be merged together. Coordinates and copy number
@@ -64,7 +67,7 @@ import edu.columbia.rdf.matcalc.toolbox.CalcModule;
  *
  */
 public class ConversionModule extends CalcModule
-    implements ModernClickListener {
+implements ModernClickListener {
 
   // private static final Path MOUSE_HUMAN_FILE =
   // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse-human-conversion");
@@ -109,9 +112,11 @@ public class ConversionModule extends CalcModule
   // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-refseq");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
+  /** The Constant ENSEMBL_MOUSE_FILE. */
   public static final Path ENSEMBL_MOUSE_FILE = SettingsService.getInstance()
       .getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ensembl"); // "res/ucsc_ensembl_mm10_20160627.txt.gz";
 
+  /** The Constant ARROW. */
   private static final String ARROW = ">";
 
   // private static final Path REFSEQ_MOUSE_FILE =
@@ -155,7 +160,7 @@ public class ConversionModule extends CalcModule
         new ModernToolTip("Convert", "Append gene conversions."));
     mConvertButton.setClickMessage("Append");
     mWindow.getRibbon().getToolbar("Genomic").getSection("Annotation")
-        .add(mConvertButton);
+    .add(mConvertButton);
 
     mConvertButton.addClickListener(this);
   }
@@ -178,10 +183,22 @@ public class ConversionModule extends CalcModule
     }
   }
 
+  /**
+   * Convert.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   private void convert() throws IOException {
     int col = mWindow.getSelectedColumn();
 
+    DataFrame m = mWindow.getCurrentMatrix();
+
     if (col == Integer.MIN_VALUE) {
+      // Try and find a column called gene
+      col = DataFrame.findColumn(m, "Gene");
+    }
+
+    if (col == -1) { //Integer.MIN_VALUE) {
       ModernMessageDialog.createDialog(mWindow,
           "You must select a column of gene ids or symbols.",
           MessageDialogType.WARNING);
@@ -189,10 +206,10 @@ public class ConversionModule extends CalcModule
       return;
     }
 
-    DataFrame m = mWindow.getCurrentMatrix();
+    int chrCol = DataFrame.findColumn(m, "location", "chr");
 
     // map using lowercase to make matching easier
-    List<String> ids = TextUtils.toLowerCase(m.columnAsText(col));
+    List<String> ids = m.columnAsText(col);
 
     GenesDialog dialog = new GenesDialog(mWindow);
 
@@ -411,8 +428,19 @@ public class ConversionModule extends CalcModule
 
     for (int i = 0; i < ret.getRows(); ++i) {
       String id = ids.get(i);
+      String chr = null;
 
-      Conversion fromSymbol = new Conversion(id, "input:" + id);
+      if (chrCol != -1) {
+        Matcher matcher = Chromosome.CHR_REGEX.matcher(m.getText(i, chrCol));
+
+        if (matcher.find()) {
+          chr = matcher.group(1);
+        }
+      }
+
+      System.err.println("aha " + chr);
+
+      Conversion fromSymbol = new Conversion(id, chr, "input:" + id);
 
       Set<Conversion> toSymbols = new TreeSet<Conversion>();
 
@@ -428,7 +456,7 @@ public class ConversionModule extends CalcModule
            */
 
           GenesService.getInstance().getHumanMap()
-              .convert(fromSymbol, dialog.getSplit(), toSymbols);
+          .convert(fromSymbol, dialog.getSplit(), toSymbols);
 
         } else {
           // Mouse
@@ -438,7 +466,7 @@ public class ConversionModule extends CalcModule
            */
 
           GenesService.getInstance().getMouseMap()
-              .convert(fromSymbol, dialog.getSplit(), toSymbols);
+          .convert(fromSymbol, dialog.getSplit(), toSymbols);
         }
       } else {
         // Converting between mouse and human
@@ -480,6 +508,13 @@ public class ConversionModule extends CalcModule
 
       if (dialog.getOutputSymbols()) {
         String o = TextUtils.NA;
+
+        // If updating species, keep old name if we can't find a new name
+        if (dialog.getConvFromHuman() == dialog.getConvToHuman()) {
+          if (dialog.getKeepOld()) {
+            o = id;
+          }
+        }
 
         if (toSymbols.size() > 0) {
           o = convert(humanMap,
@@ -557,7 +592,7 @@ public class ConversionModule extends CalcModule
       }
 
       if (dialog.getOutputChr()) {
-        String chr = TextUtils.NA;
+        chr = TextUtils.NA;
 
         if (toSymbols.size() > 0) {
           Conversion symbol = toSymbols.iterator().next();
@@ -591,7 +626,7 @@ public class ConversionModule extends CalcModule
       if (dialog.getOutputConversions()) {
         if (toSymbols.size() > 0) {
           ret.set(i, c++, conversions(toSymbols)); // convert(symbols,
-                                                   // officialSymbolHumanMap));
+          // officialSymbolHumanMap));
         } else {
           ret.set(i, c++, TextUtils.NA);
         }
@@ -601,6 +636,16 @@ public class ConversionModule extends CalcModule
     mWindow.addToHistory("Gene Conversion", ret);
   }
 
+  /**
+   * Convert.
+   *
+   * @param humanMap the human map
+   * @param mouseMap the mouse map
+   * @param symbol the symbol
+   * @param type the type
+   * @param convToHuman the conv to human
+   * @return the string
+   */
   private static String convert(GenesMap humanMap,
       GenesMap mouseMap,
       Conversion symbol,
@@ -610,15 +655,25 @@ public class ConversionModule extends CalcModule
 
     if (convToHuman) {
       ret = format(humanMap.getMappings(symbol, type)); // formatSymbolToIds(symbol,
-                                                        // symbolEnsemblTranscriptHumanMap);
+      // symbolEnsemblTranscriptHumanMap);
     } else {
       ret = format(mouseMap.getMappings(symbol, type)); // formatSymbolToIds(symbol,
-                                                        // symbolEnsemblTranscriptMouseMap);
+      // symbolEnsemblTranscriptMouseMap);
     }
 
     return ret;
   }
 
+  /**
+   * Convert.
+   *
+   * @param humanMap the human map
+   * @param mouseMap the mouse map
+   * @param symbols the symbols
+   * @param type the type
+   * @param convToHuman the conv to human
+   * @return the string
+   */
   private static String convert(GenesMap humanMap,
       GenesMap mouseMap,
       Set<Conversion> symbols,
@@ -628,15 +683,21 @@ public class ConversionModule extends CalcModule
 
     if (convToHuman) {
       ret = format(humanMap.getMappings(symbols, type)); // formatSymbolToIds(symbol,
-                                                         // symbolEnsemblTranscriptHumanMap);
+      // symbolEnsemblTranscriptHumanMap);
     } else {
       ret = format(mouseMap.getMappings(symbols, type)); // formatSymbolToIds(symbol,
-                                                         // symbolEnsemblTranscriptMouseMap);
+      // symbolEnsemblTranscriptMouseMap);
     }
 
     return ret;
   }
 
+  /**
+   * Conversions.
+   *
+   * @param symbols the symbols
+   * @return the string
+   */
   private static String conversions(Set<Conversion> symbols) {
     List<String> ret = new ArrayList<String>();
 
@@ -662,13 +723,9 @@ public class ConversionModule extends CalcModule
   /**
    * Loads a HUGO file cope with new symbols and mappings between old and new
    * symbols.
-   * 
-   * @param file
-   * @param idToSymbolMap
-   * @param oldIdToSymbolMap Will contain old symbol names mapping to their
-   *          newest.
-   * @param officalMap
-   * @throws IOException
+   *
+   * @param symbols the symbols
+   * @return the string
    */
   /*
    * private static void loadHugoMap(final Path file, Map<String, String>
@@ -934,18 +991,13 @@ public class ConversionModule extends CalcModule
    * case gene symbols reflecting the genes that the id maps to. If the id
    * cannot be converted, null will be returned. Note that species conversion
    * requires that the id be either a gene symbol
-   * 
-   * @param id
-   * @param split
-   * @param humanMouseMap
-   * @param idToSymbolFromMap
-   * @param oldIdToSymbolFromMap A secondary mapping between old symbols and
-   *          new. This can be null if no such mapping exists.
-   * @param symbolChrFromMap
-   * @param idToSymbolToMap
-   * @param oldIdToSymbolToMap
-   * @param symbolChrToMap
-   * @param symbols
+   *
+   * @param id the id
+   * @param split the split
+   * @param fromMap the from map
+   * @param toMap the to map
+   * @param homologyMap the homology map
+   * @param symbols the symbols
    */
   private void convertBetweenSpecies(final Conversion id,
       boolean split,
