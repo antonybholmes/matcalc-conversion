@@ -32,11 +32,13 @@ import javax.swing.Box;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.CheckBox;
 import org.jebtk.modern.button.ModernButtonGroup;
+import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.button.ModernCheckSwitch;
-import org.jebtk.modern.button.ModernRadioButton;
 import org.jebtk.modern.dialog.ModernDialogHelpWindow;
 import org.jebtk.modern.event.ModernClickListener;
+import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.VBox;
+import org.jebtk.modern.widget.ModernTwoStateWidget;
 import org.jebtk.modern.window.ModernWindow;
 import org.jebtk.modern.window.WindowWidgetFocusEvents;
 
@@ -58,18 +60,18 @@ public class GenesDialog extends ModernDialogHelpWindow
   private CheckBox mCheckSplit = new ModernCheckSwitch("Split hyphens");
 
   /** The m radio conv from human. */
-  private ModernRadioButton mRadioConvFromHuman = new ModernRadioButton(
+  private ModernTwoStateWidget mRadioConvFromHuman = new ModernCheckButton(
       "Human");
 
   /** The m radio conv from mouse. */
-  private ModernRadioButton mRadioConvFromMouse = new ModernRadioButton(
+  private ModernTwoStateWidget mRadioConvFromMouse = new ModernCheckButton(
       "Mouse");
 
   /** The m radio conv to human. */
-  private ModernRadioButton mRadioConvToHuman = new ModernRadioButton("Human");
+  private ModernTwoStateWidget mRadioConvToHuman = new ModernCheckButton("Human");
 
   /** The m radio conv to mouse. */
-  private ModernRadioButton mRadioConvToMouse = new ModernRadioButton("Mouse");
+  private ModernTwoStateWidget mRadioConvToMouse = new ModernCheckButton("Mouse");
 
   /** The m check symbol. */
   private CheckBox mCheckSymbol = new ModernCheckSwitch("Symbol", true);
@@ -97,7 +99,7 @@ public class GenesDialog extends ModernDialogHelpWindow
   private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions",
       true);
   
-  private CheckBox mCheckKeepOld = new ModernCheckSwitch("Keep Old ID",
+  private CheckBox mCheckKeepOld = new ModernCheckSwitch("Keep old ID",
       true);
 
   /**
@@ -127,7 +129,7 @@ public class GenesDialog extends ModernDialogHelpWindow
     mRadioConvFromHuman.doClick();
     mRadioConvToHuman.doClick();
 
-    setSize(540, 600);
+    setSize(540, 540);
 
     UI.centerWindowToScreen(this);
   }
@@ -144,17 +146,19 @@ public class GenesDialog extends ModernDialogHelpWindow
 
     sectionHeader("Input", box);
 
-    box.add(mRadioConvFromHuman);
-    // box.add(UI.createVGap(5));
-    box.add(mRadioConvFromMouse);
+    Box box2 = HBox.create();
+    box2.add(mRadioConvFromHuman);
+    box2.add(mRadioConvFromMouse);
+    box.add(box2);
     box.add(UI.createVGap(5));
     box.add(mCheckSplit);
 
     midSectionHeader("Output", box);
 
-    box.add(mRadioConvToHuman);
-    // box.add(UI.createVGap(5));
-    box.add(mRadioConvToMouse);
+    box2 = HBox.create();
+    box2.add(mRadioConvToHuman);
+    box2.add(mRadioConvToMouse);
+    box.add(box2);
     box.add(UI.createVGap(10));
     box.add(mCheckConversions);
     box.add(mCheckSymbol);
