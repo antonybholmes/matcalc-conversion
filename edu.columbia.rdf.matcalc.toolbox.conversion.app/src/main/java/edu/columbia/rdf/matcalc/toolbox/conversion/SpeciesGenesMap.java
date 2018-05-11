@@ -44,18 +44,24 @@ public class SpeciesGenesMap {
    * @return the map
    */
   public GenesMap getMap(int taxId) {
+    /*
     if (!mSpeciesMap.containsKey(taxId)) {
       switch (taxId) {
       case GenesService.MOUSE_TAX_ID:
-        mSpeciesMap.put(taxId, new GenesMap("mouse"));
+        mSpeciesMap.put(taxId, new GenesMap(taxId, "mouse"));
         break;
       default:
-        mSpeciesMap.put(taxId, new GenesMap("human"));
+        mSpeciesMap.put(taxId, new GenesMap(taxId, "human"));
         break;
       }
     }
+    */
 
     return mSpeciesMap.get(taxId);
+  }
+  
+  public void addMap(GenesMap map) {
+    mSpeciesMap.put(map.getTaxId(), map);
   }
 
   /**

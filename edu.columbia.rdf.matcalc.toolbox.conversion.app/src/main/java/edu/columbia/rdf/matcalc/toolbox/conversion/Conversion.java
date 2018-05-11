@@ -41,11 +41,11 @@ public class Conversion implements Comparable<Conversion> {
    * @param type the type
    */
   public Conversion(String id, String type) {
-    this(id, null, null, type);
+    this(id, null, type);
   }
   
   public Conversion(String id, String chr, String type) {
-    this(id, chr, null, type);
+    this(null, id, chr, type);
   }
 
   /**
@@ -55,14 +55,14 @@ public class Conversion implements Comparable<Conversion> {
    * @param parent the parent
    * @param type the type
    */
-  public Conversion(String id, Conversion parent, String type) {
-   this(id, null, parent, type);
+  public Conversion(Conversion parent, String id, String type) {
+   this(parent, id, null, type);
   }
   
-  public Conversion(String id, String chr, Conversion parent, String type) {
-    mId = id;
-    mChr = chr;
+  public Conversion(Conversion parent, String id, String chr, String type) {
     mParent = parent;
+    mId = GenesMap.santize(id);
+    mChr = chr;
     mType = type;
   }
 
@@ -73,7 +73,7 @@ public class Conversion implements Comparable<Conversion> {
    * @param type the type
    */
   public Conversion(Conversion c, String type) {
-    this(c.getId(), c, type);
+    this(c, c.getId(), type);
   }
 
   /* (non-Javadoc)

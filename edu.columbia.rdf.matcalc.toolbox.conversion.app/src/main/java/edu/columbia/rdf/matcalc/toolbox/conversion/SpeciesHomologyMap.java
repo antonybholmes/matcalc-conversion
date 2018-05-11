@@ -150,17 +150,17 @@ public class SpeciesHomologyMap {
           // If both the human and mouse appear within a group,
           // create a mapping between them
           getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
-              .addMapping(humanSymbol, mouseSymbol);
+              .map(humanSymbol, mouseSymbol);
           getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
-              .addMapping(humanEntrez, mouseSymbol);
+              .map(humanEntrez, mouseSymbol);
           getMap(GenesService.HUMAN_TAX_ID, GenesService.MOUSE_TAX_ID)
-              .addMapping(humanRefseq, mouseSymbol);
+              .map(humanRefseq, mouseSymbol);
           getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
-              .addMapping(mouseSymbol, humanSymbol);
+              .map(mouseSymbol, humanSymbol);
           getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
-              .addMapping(mouseEntrez, humanSymbol);
+              .map(mouseEntrez, humanSymbol);
           getMap(GenesService.MOUSE_TAX_ID, GenesService.HUMAN_TAX_ID)
-              .addMapping(mouseRefseq, humanSymbol);
+              .map(mouseRefseq, humanSymbol);
         }
       }
     } finally {

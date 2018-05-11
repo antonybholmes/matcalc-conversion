@@ -16,10 +16,11 @@
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.jebtk.core.collections.DefaultHashMap;
+import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.collections.TreeSetCreator;
 
 // TODO: Auto-generated Javadoc
@@ -29,15 +30,25 @@ import org.jebtk.core.collections.TreeSetCreator;
 public class GeneMapping {
   
   /** The m offical id map. */
-  private Map<String, Set<String>> mOfficalIdMap = DefaultHashMap
+  private IterMap<String, Set<String>> mOfficalIdMap = DefaultHashMap
       .create(new TreeSetCreator<String>());
 
   /**
-   * Gets the ids.
+   * Gets the all the ids regardless of type.
    *
    * @param type the type
    * @return the ids
    */
+  public Collection<String> getIds() {
+    Set<String> ret = new TreeSet<String>();
+    
+    for (String type : mOfficalIdMap) {
+      ret.addAll(mOfficalIdMap.get(type));
+    }
+    
+    return ret;
+  }
+  
   public Collection<String> getIds(String type) {
     return mOfficalIdMap.get(type);
   }

@@ -34,13 +34,19 @@ public class HomologyMap {
       .create(new TreeSetCreator<String>());
 
   /**
-   * Adds the mapping.
+   * Adds a mapping between two ids.
    *
    * @param id1 the id 1
    * @param id2 the id 2
    */
-  public void addMapping(String id1, String id2) {
-    mIdMap.get(id1.toLowerCase()).add(id2.toLowerCase());
+  public void map(String id1, String id2) {
+    id1 = GenesMap.santize(id1);
+    id2 = GenesMap.santize(id2);
+    
+    mIdMap.get(id1).add(id2);
+    
+    // May not be necessary
+    mIdMap.get(id2).add(id1);
   }
 
   /**
@@ -52,10 +58,10 @@ public class HomologyMap {
   public List<Conversion> homology(Conversion c) {
     List<Conversion> ret = new ArrayList<Conversion>();
 
-    String id = c.getId().toLowerCase();
+    String id = c.getId();
 
     for (String newId : mIdMap.get(id)) {
-      ret.add(new Conversion(newId, c, "hom:" + newId));
+      ret.add(new Conversion(c, newId, "hom:" + newId));
     }
 
     return ret; // new Conversion(ret, c, "homology");

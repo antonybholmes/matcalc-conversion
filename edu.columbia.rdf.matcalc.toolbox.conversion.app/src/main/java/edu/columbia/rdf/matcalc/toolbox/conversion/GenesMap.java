@@ -57,24 +57,45 @@ public class GenesMap {
   public static final String STRAND_TYPE = "strand";
 
   /** The m id to symbol map. */
-  private Map<String, String> mIdToSymbolMap = new HashMap<String, String>();
+  private Map<String, String> mIdToEntrezMap = new HashMap<String, String>();
 
   /** The m alt id to symbol map. */
-  private Map<String, String> mAltIdToSymbolMap = new HashMap<String, String>();
+  private Map<String, String> mAltIdToEntrezMap = new HashMap<String, String>();
 
   /** The m old id to symbol map. */
-  private Map<String, String> mOldIdToSymbolMap = new HashMap<String, String>();
+  private Map<String, String> mOldIdToEntrezMap = new HashMap<String, String>();
 
   /** The m offical id map. */
   private Map<String, GeneMapping> mOfficalIdMap;
+  
+  private Map<String, GeneMapping> mAltIdMap;
+
+  private int mTaxId;
+
+  private String mName;
+
+  private String mSpecies;
 
   /**
    * Instantiates a new genes map.
+   * @param taxId 
+   * @param species 
    *
    * @param species the species
    */
-  public GenesMap(String species) {
+  public GenesMap(int taxId, String name, String species) {
+    mTaxId = taxId;
+    mName = name;
+    mSpecies = species;
+    
     mOfficalIdMap = DefaultHashMap.create(new EntryCreator<GeneMapping>() {
+      @Override
+      public GeneMapping newEntry() {
+        return new GeneMapping();
+      }
+    });
+    
+    mAltIdMap = DefaultHashMap.create(new EntryCreator<GeneMapping>() {
       @Override
       public GeneMapping newEntry() {
         return new GeneMapping();
@@ -85,40 +106,45 @@ public class GenesMap {
   /**
    * Adds the mapping.
    *
-   * @param symbol the symbol
+   * @param entrez the symbol
    * @param name the name
    * @param type the type
    */
-  public void addMapping(String symbol, String name, String type) {
-    String ls = santize(symbol);
+  public void map(String entrez, String name, String type) {
+    entrez = santize(entrez);
 
-    mIdToSymbolMap.put(ls, ls);
+    mIdToEntrezMap.put(entrez, entrez);
 
-    mIdToSymbolMap.put(santize(name), ls);
+    mIdToEntrezMap.put(santize(name), entrez);
 
-    mOfficalIdMap.get(ls).getIds(type).add(name);
-    mOfficalIdMap.get(ls).getIds(SYMBOL_TYPE).add(symbol);
+    mOfficalIdMap.get(entrez).getIds(type).add(name);
+    //mOfficalIdMap.get(ls).getIds(SYMBOL_TYPE).add(symbol);
   }
 
   /**
    * Adds the old mapping.
    *
-   * @param symbol the symbol
+   * @param entrez the symbol
    * @param name the name
    */
-  public void addOldMapping(String symbol, String name) {
-    mOldIdToSymbolMap.put(santize(name), santize(symbol));
+  public void mapOld(String entrez, String name) {
+    mOldIdToEntrezMap.put(santize(name), santize(entrez));
   }
 
   /**
    * Add an unofficial name mapping. These are considered still valid and not
    * retired.
    *
-   * @param symbol the symbol
+   * @param entrez the symbol
    * @param name the name
    */
-  public void addAltMapping(String symbol, String name) {
-    mAltIdToSymbolMap.put(santize(name), santize(symbol));
+  public void mapAlt(String entrez, String name, String type) {
+    entrez = santize(entrez);
+    
+    // We can map from an old id to an entrez
+    mAltIdToEntrezMap.put(santize(name), entrez);
+    
+    mAltIdMap.get(entrez).getIds(type).add(name);
   }
 
   /**
@@ -128,7 +154,7 @@ public class GenesMap {
    * @param split the split
    * @param symbols the symbols
    */
-  public void convert(Conversion c, boolean split, Set<Conversion> symbols) {
+  public void convert(Conversion c, boolean split, Collection<Conversion> symbols) {
     convert(c, split, null, symbols);
   }
 
@@ -141,24 +167,22 @@ public class GenesMap {
    *
    * @param c the c
    * @param split the split
-   * @param conversionMap the conversion map
+   * @param homologyMap the conversion map
    * @param symbols the symbols
    */
   public void convert(Conversion c,
       boolean split,
-      HomologyMap conversionMap,
-      Set<Conversion> symbols) {
+      HomologyMap homologyMap,
+      Collection<Conversion> symbols) {
 
     String id = santize(c.getId());
     String chr = c.getChr();
 
-    if (mIdToSymbolMap.containsKey(id)) {
-      String newId = mIdToSymbolMap.get(id);
+    if (mIdToEntrezMap.containsKey(id)) {
+      String entrez = mIdToEntrezMap.get(id);
 
-      if (chrCheck(newId, chr)) {
-        c = new Conversion(newId, c, "map:" + newId);
-
-        symbols.add(c);
+      if (chrCheck(entrez, chr)) {
+        symbols.add(endMapping(new Conversion(c, entrez, "map:" + entrez)));
 
         return;
       }
@@ -166,17 +190,15 @@ public class GenesMap {
 
     // OK, might be an unofficial alternative symbol name
 
-    // As a backup, check the old symbols
-    if (mAltIdToSymbolMap.containsKey(id)) {
-      String newId = mAltIdToSymbolMap.get(id);
+    // As a backup, check the alternative symbols
+    if (mAltIdToEntrezMap.containsKey(id)) {
+      String entrez = mAltIdToEntrezMap.get(id);
 
-      if (chrCheck(newId, chr)) {
-        c = new Conversion(newId, c, "alt:" + newId);
-
-        if (conversionMap == null || !conversionMap.contains(newId)) {
-          symbols.add(c);
+      if (chrCheck(entrez, chr)) {
+        if (homologyMap == null || !homologyMap.contains(entrez)) {
+          symbols.add(endMapping(new Conversion(c, entrez, "alt:" + entrez)));
         } else {
-          symbols.add(new Conversion(TextUtils.NA, c, "hom-err"));
+          symbols.add(new Conversion(c, TextUtils.NA, "hom-err"));
         }
 
         /*
@@ -192,49 +214,53 @@ public class GenesMap {
     // OK, might be an old symbol name
 
     // As a backup, check the old symbols
-    if (mOldIdToSymbolMap.containsKey(id)) {
-      String newId = mOldIdToSymbolMap.get(id);
+    if (mOldIdToEntrezMap.containsKey(id)) {
+      String entrez = mOldIdToEntrezMap.get(id);
 
-      if (chrCheck(newId, chr)) {
-        c = new Conversion(newId, c, "old:" + newId);
-
-        if (conversionMap == null || !conversionMap.contains(newId)) {
-          symbols.add(c);
+      if (chrCheck(entrez, chr)) {
+        if (homologyMap == null || !homologyMap.contains(entrez)) {
+          symbols.add(endMapping(new Conversion(c, entrez, "old:" + entrez)));
         } else {
-          symbols.add(new Conversion(TextUtils.NA, c, "hom-err"));
+          symbols.add(new Conversion(c, TextUtils.NA, "hom-err"));
         }
 
         return;
       }
     }
 
-    // See if its a loc problem
+    // See if its a LOC naming problem
 
     if (id.startsWith("loc")) {
+      //Remove loc as sometimes the id is the numerical part of a LOC.... name.
       id = id.substring(3);
 
-      c = new Conversion(id, c, "loc:" + id);
-
+      c = new Conversion(c, id, "loc:" + id);
+      
+      // Recursively try again
+      convert(c, split, homologyMap, symbols);
+      
+      /*
       if (mIdToSymbolMap.containsKey(id)) {
         String newId = mIdToSymbolMap.get(id);
 
-        symbols.add(new Conversion(newId, c, "map:" + newId));
+        symbols.add(new Conversion(c, newId, "map:" + newId));
         return;
       } else {
         if (mOldIdToSymbolMap.containsKey(id)) {
           String newId = mOldIdToSymbolMap.get(id);
 
-          c = new Conversion(newId, c, "old:" + newId);
+          c = new Conversion(c, newId, "old:" + newId);
 
           if (conversionMap == null || !conversionMap.contains(newId)) {
             symbols.add(c);
           } else {
-            symbols.add(new Conversion(TextUtils.NA, c, "hom-err"));
+            symbols.add(new Conversion(c, TextUtils.NA, "hom-err"));
           }
 
           return;
         }
       }
+      */
     }
 
     if (split) {
@@ -252,7 +278,7 @@ public class GenesMap {
 
       // Each term must be its own mappable term
       for (String term : terms) {
-        if (!mIdToSymbolMap.containsKey(term)) {
+        if (!mIdToEntrezMap.containsKey(term)) {
           return;
         }
       }
@@ -269,19 +295,23 @@ public class GenesMap {
        */
 
       for (String term : terms) {
-        if (mIdToSymbolMap.containsKey(term)) {
-          String newId = mIdToSymbolMap.get(term);
+        if (mIdToEntrezMap.containsKey(term)) {
+          String newId = mIdToEntrezMap.get(term);
 
           //symbols.add(new Conversion(newId, c, "split:" + newId));
 
           // recursively update
-          convert(new Conversion(newId, c, "split:" + newId),
+          convert(new Conversion(c, newId, "split:" + newId),
               split,
-              conversionMap,
+              homologyMap,
               symbols);
         }
       }
     }
+  }
+
+  private Conversion endMapping(Conversion c) {
+    return new Conversion(c, c.getId(), "out:" + mSpecies);
   }
 
   /**
@@ -331,7 +361,7 @@ public class GenesMap {
    * @param ids the ids
    * @return the symbols
    */
-  public Collection<String> getSymbols(final Set<Conversion> ids) {
+  public Collection<String> getSymbols(final Collection<Conversion> ids) {
     return getMappings(ids, SYMBOL_TYPE);
   }
 
@@ -389,6 +419,14 @@ public class GenesMap {
     return getMapping(id, CHR_TYPE);
   }
 
+  /**
+   * Returns the first mapping available for a gene or an empty string if
+   * there isn't a mapping type associated with the gene.
+   * 
+   * @param id
+   * @param type
+   * @return
+   */
   public String getMapping(String id, String type) {
     Collection<String> mappings = getMappings(id, type);
 
@@ -411,6 +449,22 @@ public class GenesMap {
   public Collection<String> getMappings(String id, String type) {
     return mOfficalIdMap.get(santize(id)).getIds(type);
   }
+  
+  public Collection<String> getAltMappings(String id) {
+    return mAltIdMap.get(santize(id)).getIds();
+  }
+  
+  public Collection<String> getAltMappings(String id, String type) {
+    return mAltIdMap.get(santize(id)).getIds(type);
+  }
+  
+  public Collection<String> getAltMappings(Conversion c, String type) {
+    return getAltMappings(c.getId(), type);
+  }
+  
+  public Collection<String> getAltMappings(Conversion c) {
+    return getAltMappings(c.getId());
+  }
 
   /**
    * Gets the mappings.
@@ -431,13 +485,33 @@ public class GenesMap {
    * @return the mappings
    */
   public Set<String> getMappings(final Collection<Conversion> ids, String type) {
-    Set<String> officalSymbols = new TreeSet<String>();
+    Set<String> symbols = new TreeSet<String>();
 
     for (Conversion c : ids) {
-      officalSymbols.addAll(getMappings(c.getId(), type));
+      symbols.addAll(getMappings(c, type));
     }
 
-    return officalSymbols;
+    return symbols;
+  }
+  
+  public Set<String> getAltMappings(final Collection<Conversion> ids, String type) {
+    Set<String> symbols = new TreeSet<String>();
+
+    for (Conversion c : ids) {
+      symbols.addAll(getAltMappings(c, type));
+    }
+
+    return symbols;
+  }
+  
+  public Set<String> getAltMappings(final Collection<Conversion> ids) {
+    Set<String> symbols = new TreeSet<String>();
+
+    for (Conversion c : ids) {
+      symbols.addAll(getAltMappings(c));
+    }
+
+    return symbols;
   }
 
   /**
@@ -452,8 +526,21 @@ public class GenesMap {
         .values(CollectionUtils.sort(getMappings(symbols, type))).toString();
   }
 
-  private static final String santize(String v) {
+  public static final String santize(String v) {
     return v.toLowerCase();
+  }
+
+  public String getName() {
+    return mName;
+  }
+
+  /**
+   * Return the taxonomy id of the map.
+   * 
+   * @return
+   */
+  public int getTaxId() {
+    return mTaxId;
   }
 
   /*

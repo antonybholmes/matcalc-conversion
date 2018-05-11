@@ -84,10 +84,10 @@ public class GenesDialog extends ModernDialogHelpWindow
 
   /** The m check ensembl transcript. */
   private CheckBox mCheckEnsemblTranscript = new ModernCheckSwitch(
-      "Ensembl Transcript");
+      "Ensembl transcript");
 
   /** The m check ensembl gene. */
-  private CheckBox mCheckEnsemblGene = new ModernCheckSwitch("Ensembl Gene");
+  private CheckBox mCheckEnsemblGene = new ModernCheckSwitch("Ensembl gene");
 
   /** The m check chr. */
   private CheckBox mCheckChr = new ModernCheckSwitch("Chromosome");
@@ -99,8 +99,14 @@ public class GenesDialog extends ModernDialogHelpWindow
   private CheckBox mCheckConversions = new ModernCheckSwitch("Conversions",
       true);
   
-  private CheckBox mCheckKeepOld = new ModernCheckSwitch("Keep old ID",
+  private CheckBox mCheckParams = new ModernCheckSwitch("Parameters",
       true);
+  
+  private CheckBox mCheckKeepOld = new ModernCheckSwitch("Keep old ID", true);
+  
+  private CheckBox mCheckShowAlt = new ModernCheckSwitch("Alt names");
+  
+  private DatabaseSidePanel mDbPanel = new DatabaseSidePanel();
 
   /**
    * Instantiates a new pattern discovery dialog.
@@ -129,7 +135,7 @@ public class GenesDialog extends ModernDialogHelpWindow
     mRadioConvFromHuman.doClick();
     mRadioConvToHuman.doClick();
 
-    setSize(540, 540);
+    setSize(600, 500);
 
     UI.centerWindowToScreen(this);
   }
@@ -159,25 +165,42 @@ public class GenesDialog extends ModernDialogHelpWindow
     box2.add(mRadioConvToHuman);
     box2.add(mRadioConvToMouse);
     box.add(box2);
-    box.add(UI.createVGap(10));
-    box.add(mCheckConversions);
-    box.add(mCheckSymbol);
+    box.add(UI.createVGap(20));
+    
+    box2 = HBox.create();
+    box2.setAlignmentY(TOP_ALIGNMENT);
+    VBox box3 = VBox.create();
+    box3.setAlignmentY(TOP_ALIGNMENT);
+    VBox box4 = VBox.create();
+    box4.setAlignmentY(TOP_ALIGNMENT);
+    box2.add(box3);
+    box2.add(UI.createHGap(20));
+    box2.add(box4);
+    box.add(box2);
+    
+    
+    box3.add(mCheckSymbol);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckEntrez);
+    box3.add(mCheckEntrez);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckRefSeq);
+    box3.add(mCheckRefSeq);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckEnsemblTranscript);
+    box3.add(mCheckEnsemblTranscript);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckEnsemblGene);
+    box3.add(mCheckEnsemblGene);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckChr);
+    box3.add(mCheckChr);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckStrand);
+    box4.add(mCheckStrand);
     // box2.add(UI.createVGap(5));
-    box.add(mCheckKeepOld);
+    box4.add(mCheckKeepOld);
+    box4.add(mCheckShowAlt);
+    box4.add(mCheckConversions);
+    box4.add(mCheckParams);
     
     setCard(box);
+    
+    getTabsPane().tabs().left().add("Genomes", mDbPanel, 120, 100, 400);
   }
 
   /**
@@ -297,7 +320,30 @@ public class GenesDialog extends ModernDialogHelpWindow
     return mCheckConversions.isSelected();
   }
 
+  /**
+   * Returns true if old symbols should be kept if a replacement cannot be
+   * found.
+   * 
+   * @return
+   */
   public boolean getKeepOld() {
-    return true;
+    return mCheckKeepOld.isSelected();
+  }
+  
+  /**
+   * Returns true if alternative ids for a gene should be displayed.
+   * 
+   * @return
+   */
+  public boolean getShowAlt() {
+    return mCheckShowAlt.isSelected();
+  }
+
+  public boolean getOutputParams() {
+    return mCheckParams.isSelected();
+  }
+  
+  public String getVersion() {
+    return mDbPanel.getVersion();
   }
 }

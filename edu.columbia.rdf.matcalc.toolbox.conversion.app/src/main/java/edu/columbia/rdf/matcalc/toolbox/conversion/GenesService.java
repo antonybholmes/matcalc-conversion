@@ -29,10 +29,12 @@ package edu.columbia.rdf.matcalc.toolbox.conversion;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.io.FileUtils;
 import org.jebtk.core.io.PathUtils;
 import org.xml.sax.SAXException;
@@ -47,7 +49,7 @@ public class GenesService {
    * The Class GenesServiceLoader.
    */
   private static class GenesServiceLoader {
-    
+
     /** The Constant INSTANCE. */
     private static final GenesService INSTANCE = new GenesService();
   }
@@ -57,7 +59,7 @@ public class GenesService {
    *
    * @return single instance of SettingsService
    */
-  public static GenesService getInstance() {
+  public static GenesService instance() {
     return GenesServiceLoader.INSTANCE;
   }
 
@@ -81,18 +83,24 @@ public class GenesService {
   /** The m auto load homology. */
   private boolean mAutoLoadHomology = true;
 
-  /** The Constant GENES_DIR. */
-  private static final Path GENES_DIR = PathUtils.getPath("res/modules/genes");
+  private Path mDir;
 
-  /** The Constant HOMOLOGY_DIR. */
-  private static final Path HOMOLOGY_DIR = PathUtils
-      .getPath("res/modules/genes/homology");
+  /** The Constant GENES_DIR. */
+  private static final Path GENES_DIR = 
+      PathUtils.getPath("res/modules/genes/conversion");
 
   /**
    * Instantiates a new motifs db service.
    */
   private GenesService() {
     // do nothing
+  }
+  
+  public void setVersion(String version) {
+    mDir = GENES_DIR.resolve(version);
+    
+    mAutoLoad = true;
+    mAutoLoadHomology = true;
   }
 
   /**
@@ -201,11 +209,29 @@ public class GenesService {
    */
   private void autoLoadXml()
       throws IOException, ParserConfigurationException, SAXException {
-    List<Path> files = FileUtils.findAll(GENES_DIR, "xml.gz");
+    List<Path> files = FileUtils.match(mDir, true, "human", "xml.gz");
 
-    for (Path file : files) {
-      loadXml(file);
+    if (files.size() > 0) {
+      Collections.sort(files);
+      Collections.reverse(files);
+
+      // Pick last file by name
+      loadXml(files.get(0));
     }
+    
+    files = FileUtils.match(mDir, true, "mouse", "xml.gz");
+
+    if (files.size() > 0) {
+      Collections.sort(files);
+      Collections.reverse(files);
+
+      // Pick last file by name
+      loadXml(files.get(0));
+    }
+    
+    //for (Path file : files) {
+    //  loadXml(file);
+    //}
   }
 
   /**
@@ -233,11 +259,19 @@ public class GenesService {
    */
   private void loadHomologyXml()
       throws IOException, ParserConfigurationException, SAXException {
-    List<Path> files = FileUtils.findAll(HOMOLOGY_DIR, "xml.gz");
+    List<Path> files = FileUtils.match(mDir, true, "homology", "xml.gz");
 
-    for (Path file : files) {
-      loadHomologyXml(file);
+    if (files.size() > 0) {
+      Collections.sort(files);
+      Collections.reverse(files);
+
+      // Pick last file by name
+      loadHomologyXml(files.get(0));
     }
+
+    //for (Path file : files) {
+    // loadHomologyXml(file);
+    //}
   }
 
   /**
@@ -251,6 +285,10 @@ public class GenesService {
   public void loadHomologyXml(Path file)
       throws IOException, ParserConfigurationException, SAXException {
     SpeciesHomologyMap.parseGenesXmlGz(file, mHomologyMap);
+  }
+  
+  public List<String> versions() throws IOException {
+    return PathUtils.names(CollectionUtils.sort(FileUtils.lsdir(GENES_DIR)));
   }
 
   /*

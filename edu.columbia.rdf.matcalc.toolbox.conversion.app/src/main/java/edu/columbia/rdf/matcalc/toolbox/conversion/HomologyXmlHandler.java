@@ -27,14 +27,12 @@
  */
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
-import java.text.ParseException;
 import java.util.Map;
 
 import org.jebtk.core.collections.DefaultTreeMap;
 import org.jebtk.core.collections.DefaultTreeMapCreator;
 import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.collections.TreeMapCreator;
-import org.jebtk.core.text.Parser;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -46,11 +44,11 @@ import org.xml.sax.helpers.DefaultHandler;
 public class HomologyXmlHandler extends DefaultHandler {
 
   /** The m symbol. */
-  private String mSymbol;
-  
+  private String mEntrez;
+
   /** The m species map. */
   private SpeciesHomologyMap mSpeciesMap;
-  
+
   /** The m id map. */
   private Map<Integer, IterMap<String, IterMap<String, String>>> mIdMap;
 
@@ -83,26 +81,27 @@ public class HomologyXmlHandler extends DefaultHandler {
       Attributes attributes) throws SAXException {
     if (qName.equals("group")) {
       mIdMap.clear();
+    } else if (qName.equals("tax")) {
+      if (attributes.getValue("id") != null) {
+        mTaxId = Integer.parseInt(attributes.getValue("id"));
+      }
     } else if (qName.equals("gene")) {
-      mSymbol = attributes.getValue("symbol");
-
-      try {
-        mTaxId = Parser.toInt(attributes.getValue("tax_id"));
-      } catch (ParseException e) {
-        e.printStackTrace();
+      if (attributes.getValue("entrez") != null) {
+        mEntrez = attributes.getValue("entrez");
+      } else {
+        mEntrez = attributes.getValue("symbol");
       }
 
-      mIdMap.get(mTaxId).get(mSymbol).put("symbol", mSymbol);
-
-      if (mSymbol.toLowerCase().contains("coro7")) {
-        System.err.println("aha " + mSymbol + " " + mTaxId);
+      if (attributes.getValue("tax_id") != null) {
+        mTaxId = Integer.parseInt(attributes.getValue("tax_id"));
       }
 
+      mIdMap.get(mTaxId).get(mEntrez).put("symbol", mEntrez);
     } else if (qName.equals("id")) {
       String name = attributes.getValue("name");
       String type = attributes.getValue("type").toLowerCase();
 
-      mIdMap.get(mTaxId).get(mSymbol).put(type, name);
+      mIdMap.get(mTaxId).get(mEntrez).put(type, name);
     } else {
       // Do nothing
     }
@@ -119,28 +118,22 @@ public class HomologyXmlHandler extends DefaultHandler {
     if (qName.equals("group")) {
 
       for (int taxId1 : mIdMap.keySet()) {
-        for (String symbol1 : mIdMap.get(taxId1).keySet()) {
-          for (String type1 : mIdMap.get(taxId1).get(symbol1).keySet()) {
+        for (String entrez1 : mIdMap.get(taxId1).keySet()) {
+          for (String type1 : mIdMap.get(taxId1).get(entrez1).keySet()) {
+            String id1 = mIdMap.get(taxId1).get(entrez1).get(type1)
+                .toLowerCase();
+
             for (int taxId2 : mIdMap.keySet()) {
-              for (String symbol2 : mIdMap.get(taxId2).keySet()) {
-                for (String type2 : mIdMap.get(taxId2).get(symbol2).keySet()) {
-                  /*
-                   * String id1 = symbol1.toLowerCase(); String id2 =
-                   * symbol2.toLowerCase();
-                   * 
-                   * mSpeciesMap.getMap(taxId1, taxId2).addMapping(id1, id2);
-                   * mSpeciesMap.getMap(taxId2, taxId1).addMapping(id2, id1);
-                   * 
-                   * if (id1.contains("coro7") || id2.contains("coro7")) {
-                   * System.err.println("coro " + taxId1 + " " + id1 + " " +
-                   * taxId2 + " " + id2); }
-                   */
+              for (String entrez2 : mIdMap.get(taxId2).keySet()) {
+                for (String type2 : mIdMap.get(taxId2).get(entrez2).keySet()) {
+                  //String id2 = entrez2.toLowerCase(); // mIdMap.get(taxId2).get(symbol2).get(type2).toLowerCase();
 
-                  String id1 = mIdMap.get(taxId1).get(symbol1).get(type1)
+                  String id2 = mIdMap.get(taxId2).get(entrez2).get(type2)
                       .toLowerCase();
-                  String id2 = symbol2.toLowerCase(); // mIdMap.get(taxId2).get(symbol2).get(type2).toLowerCase();
 
-                  mSpeciesMap.getMap(taxId1, taxId2).addMapping(id1, id2);
+                  //System.err.println("hom " + taxId1 + " " + taxId2 + " " + id1 + " " + id2);
+
+                  mSpeciesMap.getMap(taxId1, taxId2).map(id1, id2);
                   // mSpeciesMap.getMap(taxId2, taxId1).addMapping(id2, id1);
                 }
               }

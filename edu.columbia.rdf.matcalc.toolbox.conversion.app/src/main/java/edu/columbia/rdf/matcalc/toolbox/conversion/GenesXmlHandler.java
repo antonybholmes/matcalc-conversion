@@ -27,9 +27,6 @@
  */
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
-import java.text.ParseException;
-
-import org.jebtk.core.text.Parser;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -41,16 +38,13 @@ import org.xml.sax.helpers.DefaultHandler;
 public class GenesXmlHandler extends DefaultHandler {
 
   /** The m symbol. */
-  private String mSymbol;
+  private String mEntrez;
   
   /** The m species map. */
   private SpeciesGenesMap mSpeciesMap;
   
   /** The m taxt id. */
-  private int mTaxtId;
-  
-  /** The m chr. */
-  private String mChr;
+  private int mTaxId;
 
   /**
    * Instantiates a new genes xml handler.
@@ -72,25 +66,34 @@ public class GenesXmlHandler extends DefaultHandler {
       String qName,
       Attributes attributes) throws SAXException {
     if (qName.equals("genes")) {
-      try {
-        mTaxtId = Parser.toInt(attributes.getValue("tax_id"));
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
+      mTaxId = Integer.parseInt(attributes.getValue("tax_id"));
+      
+      String id = attributes.getValue("id");
+      
+      String species = attributes.getValue("species");
+      
+      mSpeciesMap.addMap(new GenesMap(mTaxId, id, species));
     } else if (qName.equals("gene")) {
-      mSymbol = attributes.getValue("symbol");
+      if (attributes.getValue("entrez") != null) {
+        mEntrez = attributes.getValue("entrez");
+      } else {
+        mEntrez = attributes.getValue("symbol");
+      }
+      
       //mChr = attributes.getValue("chr");
     } else if (qName.equals("mapping")) {
       String name = attributes.getValue("name");
       String type = attributes.getValue("type");
 
-      mSpeciesMap.getMap(mTaxtId).addMapping(mSymbol, name, type);
+      mSpeciesMap.getMap(mTaxId).map(mEntrez, name, type);
     } else if (qName.equals("alt-mapping")) {
       String name = attributes.getValue("name");
-      mSpeciesMap.getMap(mTaxtId).addAltMapping(mSymbol, name);
+      String type = attributes.getValue("type");
+      
+      mSpeciesMap.getMap(mTaxId).mapAlt(mEntrez, name, type);
     } else if (qName.equals("old-mapping")) {
       String name = attributes.getValue("name");
-      mSpeciesMap.getMap(mTaxtId).addOldMapping(mSymbol, name);
+      mSpeciesMap.getMap(mTaxId).mapOld(mEntrez, name);
     } else {
       // Do nothing
     }

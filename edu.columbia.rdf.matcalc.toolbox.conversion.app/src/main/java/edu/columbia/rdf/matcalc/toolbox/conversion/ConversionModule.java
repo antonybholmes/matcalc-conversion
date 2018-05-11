@@ -66,7 +66,7 @@ import edu.columbia.rdf.matcalc.toolbox.CalcModule;
  * @author Antony Holmes Holmes
  *
  */
-public class ConversionModule extends CalcModule
+public class ConversionModule extends CalcModule 
 implements ModernClickListener {
 
   // private static final Path MOUSE_HUMAN_FILE =
@@ -117,7 +117,7 @@ implements ModernClickListener {
       .getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ensembl"); // "res/ucsc_ensembl_mm10_20160627.txt.gz";
 
   /** The Constant ARROW. */
-  private static final String ARROW = ">";
+  private static final String ARROW = " > ";
 
   // private static final Path REFSEQ_MOUSE_FILE =
   // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse-refseq");
@@ -218,133 +218,11 @@ implements ModernClickListener {
     if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
       return;
     }
+    
+    GenesService.instance().setVersion(dialog.getVersion());
 
-    // We shall map between entities using gene symbols, since symbols
-    // are common between all databases whereas entrez ids etc are not
-
-    // Try to convert ids (which include symbols) to symbols so we have
-    // a common ground
-
-    /*
-     * Map<String, String> idToSymbolHumanMap = new HashMap<String, String>();
-     * 
-     * Map<String, String> oldIdToSymbolHumanMap = new HashMap<String,
-     * String>();
-     * 
-     * Map<String, String> symbolChrHumanMap = new HashMap<String, String>();
-     * 
-     * Map<String, String> symbolStrandHumanMap = new HashMap<String, String>();
-     * 
-     * Map<String, String> officialSymbolHumanMap = new HashMap<String,
-     * String>();
-     * 
-     * Map<String, Collection<String>> symbolEnsemblTranscriptHumanMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolEnsemblGeneHumanMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolRefSeqHumanMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolEntrezHumanMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     */
-
-    /*
-     * loadMaps(ENSEMBL_HUMAN_FILE, idToSymbolHumanMap, officialSymbolHumanMap,
-     * symbolChrHumanMap, symbolStrandHumanMap, symbolEnsemblTranscriptHumanMap,
-     * symbolEnsemblGeneHumanMap);
-     */
-
-    /*
-     * loadNcbiMap(NCBI_GENE_INFO_HUMAN_FILE, NCBI_GENE_HISTORY_HUMAN_FILE,
-     * NCBI_GENE_REFSEQ_HUMAN_FILE, idToSymbolHumanMap, oldIdToSymbolHumanMap,
-     * officialSymbolHumanMap, symbolRefSeqHumanMap, symbolEntrezHumanMap);
-     */
-
-    /*
-     * // We can load extra information from HUGO to help with the //
-     * conversions loadHugoMap(HUGO_FILE, idToSymbolHumanMap,
-     * oldIdToSymbolHumanMap, officialSymbolHumanMap);
-     */
-
-    /*
-     * loadMaps(REFSEQ_HUMAN_FILE, idToSymbolHumanMap, officialSymbolHumanMap,
-     * symbolChrHumanMap, symbolStrandHumanMap, symbolRefSeqHumanMap,
-     * symbolEntrezHumanMap);
-     * 
-     * loadNcbiMap(NCBI_HUMAN_FILE, idToSymbolHumanMap, officialSymbolHumanMap,
-     * symbolRefSeqHumanMap, symbolEntrezHumanMap);
-     */
-
-    /*
-     * Map<String, String> idToSymbolMouseMap = new HashMap<String, String>();
-     * 
-     * Map<String, String> oldIdToSymbolMouseMap = new HashMap<String,
-     * String>();
-     * 
-     * Map<String, String> officialSymbolMouseMap = new HashMap<String,
-     * String>();
-     * 
-     * Map<String, String> symbolChrMouseMap = new HashMap<String, String>();
-     * 
-     * Map<String, String> symbolStrandMouseMap = new HashMap<String, String>();
-     * 
-     * Map<String, Collection<String>> symbolRefSeqMouseMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolEntrezMouseMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolEnsemblTranscriptMouseMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     * 
-     * Map<String, Collection<String>> symbolEnsemblGeneMouseMap =
-     * DefaultHashMap.create(new TreeSetCreator<String>());
-     */
-
-    /*
-     * loadMaps(ENSEMBL_MOUSE_FILE, idToSymbolMouseMap, officialSymbolMouseMap,
-     * symbolChrMouseMap, symbolStrandMouseMap, symbolEnsemblTranscriptMouseMap,
-     * symbolEnsemblGeneMouseMap);
-     */
-
-    /*
-     * loadNcbiMap(NCBI_GENE_INFO_MOUSE_FILE, NCBI_GENE_HISTORY_MOUSE_FILE,
-     * NCBI_GENE_REFSEQ_MOUSE_FILE, idToSymbolMouseMap, oldIdToSymbolMouseMap,
-     * officialSymbolMouseMap, symbolRefSeqMouseMap, symbolEntrezMouseMap);
-     */
-
-    /*
-     * loadMaps(REFSEQ_MOUSE_FILE, idToSymbolMouseMap, officialSymbolMouseMap,
-     * symbolChrMouseMap, symbolStrandMouseMap, symbolRefSeqMouseMap,
-     * symbolEntrezMouseMap);
-     * 
-     * loadNcbiMap(NCBI_MOUSE_FILE, idToSymbolMouseMap, officialSymbolMouseMap,
-     * symbolRefSeqMouseMap, symbolEntrezMouseMap);
-     */
-
-    // We are going to map between human and mouse
-    // Map<String, String> humanMouseMap =
-    // new HashMap<String, String>();
-
-    // Map<String, String> mouseHumanMap =
-    // new HashMap<String, String>();
-
-    // if (dialog.getConvFromHuman() != dialog.getConvToHuman()) {
-    // loadConversion(MOUSE_HUMAN_FILE, humanMouseMap, mouseHumanMap);
-
-    // GenesService.getInstance().getConversionMap().
-    // }
-
-    // if (dialog.getOutputEnsemblGene() || dialog.getOutputEnsemblTranscript())
-    // {
-    // GenesService.getInstance().autoLoadEnsembl();
-    // }
-
-    GenesMap humanMap = GenesService.getInstance().getHumanMap();
-    GenesMap mouseMap = GenesService.getInstance().getMouseMap();
+    GenesMap humanMap = GenesService.instance().getHumanMap();
+    GenesMap mouseMap = GenesService.instance().getMouseMap();
 
     int c = m.getCols();
 
@@ -379,6 +257,14 @@ implements ModernClickListener {
     if (dialog.getOutputConversions()) {
       ++c;
     }
+    
+    if (dialog.getOutputParams()) {
+      ++c;
+    }
+    
+    if (dialog.getShowAlt()) {
+      ++c;
+    }
 
     DataFrame ret = DataFrame.createDataFrame(m.getRows(), c);
 
@@ -396,6 +282,10 @@ implements ModernClickListener {
 
     if (dialog.getOutputSymbols()) {
       ret.setColumnName(c++, prefix + " Gene Symbol");
+    }
+    
+    if (dialog.getShowAlt()) {
+      ret.setColumnName(c++, prefix + " Alt");
     }
 
     if (dialog.getOutputEntrez()) {
@@ -425,6 +315,10 @@ implements ModernClickListener {
     if (dialog.getOutputConversions()) {
       ret.setColumnName(c++, prefix + " Conversions");
     }
+    
+    if (dialog.getOutputParams()) {
+      ret.setColumnName(c++, "Conversion Parameters");
+    }
 
     for (int i = 0; i < ret.getRows(); ++i) {
       String id = ids.get(i);
@@ -438,11 +332,9 @@ implements ModernClickListener {
         }
       }
 
-      System.err.println("aha " + chr);
+      Conversion fromId = new Conversion(id, chr, "in:" + id);
 
-      Conversion fromSymbol = new Conversion(id, chr, "input:" + id);
-
-      Set<Conversion> toSymbols = new TreeSet<Conversion>();
+      Set<Conversion> toEntrezes = new TreeSet<Conversion>();
 
       if (dialog.getConvFromHuman() == dialog.getConvToHuman()) {
         // We are not converting between species
@@ -455,8 +347,8 @@ implements ModernClickListener {
            * oldIdToSymbolHumanMap, symbolChrHumanMap, symbols);
            */
 
-          GenesService.getInstance().getHumanMap()
-          .convert(fromSymbol, dialog.getSplit(), toSymbols);
+          GenesService.instance().getHumanMap()
+          .convert(fromId, dialog.getSplit(), toEntrezes);
 
         } else {
           // Mouse
@@ -465,8 +357,8 @@ implements ModernClickListener {
            * symbolChrMouseMap, symbols);
            */
 
-          GenesService.getInstance().getMouseMap()
-          .convert(fromSymbol, dialog.getSplit(), toSymbols);
+          GenesService.instance().getMouseMap()
+          .convert(fromId, dialog.getSplit(), toEntrezes);
         }
       } else {
         // Converting between mouse and human
@@ -480,12 +372,12 @@ implements ModernClickListener {
            * symbols);
            */
 
-          convertBetweenSpecies(fromSymbol,
+          convertBetweenSpecies(fromId,
               dialog.getSplit(),
-              GenesService.getInstance().getHumanMap(),
-              GenesService.getInstance().getMouseMap(),
-              GenesService.getInstance().getHomologyMap().humanToMouse(),
-              toSymbols);
+              GenesService.instance().getHumanMap(),
+              GenesService.instance().getMouseMap(),
+              GenesService.instance().getHomologyMap().humanToMouse(),
+              toEntrezes);
         } else {
           // To human
           /*
@@ -495,12 +387,12 @@ implements ModernClickListener {
            * symbols);
            */
 
-          convertBetweenSpecies(fromSymbol,
+          convertBetweenSpecies(fromId,
               dialog.getSplit(),
-              GenesService.getInstance().getMouseMap(),
-              GenesService.getInstance().getHumanMap(),
-              GenesService.getInstance().getHomologyMap().mouseToHuman(),
-              toSymbols);
+              GenesService.instance().getMouseMap(),
+              GenesService.instance().getHumanMap(),
+              GenesService.instance().getHomologyMap().mouseToHuman(),
+              toEntrezes);
         }
       }
 
@@ -516,40 +408,53 @@ implements ModernClickListener {
           }
         }
 
-        if (toSymbols.size() > 0) {
-          o = convert(humanMap,
+        if (toEntrezes.size() > 0) {
+          o = mapping(humanMap,
               mouseMap,
-              toSymbols,
+              toEntrezes,
               GenesMap.SYMBOL_TYPE,
               dialog.getConvToHuman());
         }
 
         ret.set(i, c++, o);
       }
+      
+      if (dialog.getShowAlt()) {
+        String alt = TextUtils.NA;
+
+        if (toEntrezes.size() > 0) {
+          alt = altMapping(humanMap,
+              mouseMap,
+              toEntrezes,
+              dialog.getConvToHuman());
+        }
+
+        ret.set(i, c++, alt);
+      }
 
       if (dialog.getOutputEntrez()) {
-        String entrez = TextUtils.NA;
+        String o = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion entrez = toEntrezes.iterator().next();
 
-          entrez = convert(humanMap,
+          o = mapping(humanMap,
               mouseMap,
-              symbol,
+              entrez,
               GenesMap.ENTREZ_TYPE,
               dialog.getConvToHuman());
         }
 
-        ret.set(i, c++, entrez);
+        ret.set(i, c++, o);
       }
 
       if (dialog.getOutputRefSeq()) {
         String refSeq = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion symbol = toEntrezes.iterator().next();
 
-          refSeq = convert(humanMap,
+          refSeq = mapping(humanMap,
               mouseMap,
               symbol,
               GenesMap.REFSEQ_TYPE,
@@ -562,10 +467,10 @@ implements ModernClickListener {
       if (dialog.getOutputEnsemblGene()) {
         String ensembl = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion symbol = toEntrezes.iterator().next();
 
-          ensembl = convert(humanMap,
+          ensembl = mapping(humanMap,
               mouseMap,
               symbol,
               GenesMap.ENSEMBL_GENE_TYPE,
@@ -578,10 +483,10 @@ implements ModernClickListener {
       if (dialog.getOutputEnsemblTranscript()) {
         String ensembl = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion symbol = toEntrezes.iterator().next();
 
-          ensembl = convert(humanMap,
+          ensembl = mapping(humanMap,
               mouseMap,
               symbol,
               GenesMap.ENSEMBL_TRANSCRIPT_TYPE,
@@ -594,10 +499,10 @@ implements ModernClickListener {
       if (dialog.getOutputChr()) {
         chr = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion symbol = toEntrezes.iterator().next();
 
-          chr = convert(humanMap,
+          chr = mapping(humanMap,
               mouseMap,
               symbol,
               GenesMap.CHR_TYPE,
@@ -610,10 +515,10 @@ implements ModernClickListener {
       if (dialog.getOutputStrand()) {
         String strand = TextUtils.NA;
 
-        if (toSymbols.size() > 0) {
-          Conversion symbol = toSymbols.iterator().next();
+        if (toEntrezes.size() > 0) {
+          Conversion symbol = toEntrezes.iterator().next();
 
-          strand = convert(humanMap,
+          strand = mapping(humanMap,
               mouseMap,
               symbol,
               GenesMap.STRAND_TYPE,
@@ -624,13 +529,18 @@ implements ModernClickListener {
       }
 
       if (dialog.getOutputConversions()) {
-        if (toSymbols.size() > 0) {
-          ret.set(i, c++, conversions(toSymbols)); // convert(symbols,
+        if (toEntrezes.size() > 0) {
+          ret.set(i, c++, conversions(toEntrezes)); // convert(symbols,
           // officialSymbolHumanMap));
         } else {
           ret.set(i, c++, TextUtils.NA);
         }
       }
+      
+      if (dialog.getOutputParams()) {
+        ret.set(i, c++, params(humanMap, mouseMap,  dialog.getConvFromHuman(), dialog.getConvToHuman()));
+      }
+      
     }
 
     mWindow.addToHistory("Gene Conversion", ret);
@@ -646,7 +556,7 @@ implements ModernClickListener {
    * @param convToHuman the conv to human
    * @return the string
    */
-  private static String convert(GenesMap humanMap,
+  private static String mapping(GenesMap humanMap,
       GenesMap mouseMap,
       Conversion symbol,
       String type,
@@ -674,7 +584,7 @@ implements ModernClickListener {
    * @param convToHuman the conv to human
    * @return the string
    */
-  private static String convert(GenesMap humanMap,
+  private static String mapping(GenesMap humanMap,
       GenesMap mouseMap,
       Set<Conversion> symbols,
       String type,
@@ -686,6 +596,23 @@ implements ModernClickListener {
       // symbolEnsemblTranscriptHumanMap);
     } else {
       ret = format(mouseMap.getMappings(symbols, type)); // formatSymbolToIds(symbol,
+      // symbolEnsemblTranscriptMouseMap);
+    }
+
+    return ret;
+  }
+  
+  private static String altMapping(GenesMap humanMap,
+      GenesMap mouseMap,
+      Set<Conversion> symbols,
+      boolean convToHuman) {
+    String ret;
+
+    if (convToHuman) {
+      ret = format(humanMap.getAltMappings(symbols)); // formatSymbolToIds(symbol,
+      // symbolEnsemblTranscriptHumanMap);
+    } else {
+      ret = format(mouseMap.getAltMappings(symbols)); // formatSymbolToIds(symbol,
       // symbolEnsemblTranscriptMouseMap);
     }
 
@@ -715,6 +642,26 @@ implements ModernClickListener {
       Collections.reverse(types);
 
       ret.add(Join.on(ARROW).values(types).toString());
+    }
+
+    return Join.onSemiColon().values(ret).toString();
+  }
+  
+  private String params(GenesMap humanMap,
+      GenesMap mouseMap,
+      boolean fromHuman, 
+      boolean toHuman) {
+    List<String> ret = new ArrayList<String>();
+
+    if (fromHuman == toHuman) {
+      if (fromHuman) {
+        ret.add("human:" + humanMap.getName());
+      } else {
+        ret.add("mouse:" + mouseMap.getName());
+      }
+    } else {
+      ret.add("human:" + humanMap.getName());
+      ret.add("mouse:" + mouseMap.getName());
     }
 
     return Join.onSemiColon().values(ret).toString();
@@ -1008,29 +955,29 @@ implements ModernClickListener {
 
     // First convert the id to a lower case gene symbol in its own
     // species to make sure names are up to date etc.
-    Set<Conversion> fromSymbols = new HashSet<Conversion>();
-    fromMap.convert(id, split, fromSymbols);
+    Set<Conversion> fromEntrezes = new HashSet<Conversion>();
+    fromMap.convert(id, split, fromEntrezes);
 
     // System.err.println(conversionMap.printKeys());
 
     // Now convert between species
-    for (Conversion symbol : fromSymbols) {
-      if (homologyMap.contains(symbol)) {
-        List<Conversion> homologySymbols = homologyMap.homology(symbol);
+    for (Conversion entrez : fromEntrezes) {
+      if (homologyMap.contains(entrez)) {
+        List<Conversion> homologyEntrezes = homologyMap.homology(entrez);
 
-        for (Conversion c : homologySymbols) {
+        for (Conversion homologyEntrez : homologyEntrezes) {
           // System.err.println("conv " + symbol.getId() + " " + c.getId() + " "
           // +
           // c.getType());
 
           // Use the translated symbol for the conversion
-          toMap.convert(c, split, symbols);
+          toMap.convert(homologyEntrez, split, symbols);
         }
       } else {
         // Conversion converted = new Conversion(symbol, "no_homology");
 
         // Fall back and see if the symbol exists without conversion
-        toMap.convert(symbol, split, homologyMap, symbols);
+        toMap.convert(entrez, split, homologyMap, symbols);
       }
     }
   }
