@@ -59,7 +59,7 @@ public class GenesService {
    *
    * @return single instance of SettingsService
    */
-  public static GenesService instance() {
+  public static GenesService getInstance() {
     return GenesServiceLoader.INSTANCE;
   }
 

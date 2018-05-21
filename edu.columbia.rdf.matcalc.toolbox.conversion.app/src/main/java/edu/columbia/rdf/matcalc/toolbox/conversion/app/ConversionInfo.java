@@ -28,7 +28,7 @@
 package edu.columbia.rdf.matcalc.toolbox.conversion.app;
 
 import org.jebtk.core.AppVersion;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.help.GuiAppInfo;
 
 /**
@@ -41,8 +41,8 @@ public class ConversionInfo extends GuiAppInfo {
    */
   public ConversionInfo() {
     super("Genes", new AppVersion(9), "Copyright (C) 2014-2016 Antony Holmes",
-        UIService.getInstance().loadIcon(ConversionIcon.class, 32),
-        UIService.getInstance().loadIcon(ConversionIcon.class, 128),
+        AssetService.getInstance().loadIcon(ConversionIcon.class, 32),
+        AssetService.getInstance().loadIcon(ConversionIcon.class, 128),
         "Convert gene symbols and ids.");
   }
 

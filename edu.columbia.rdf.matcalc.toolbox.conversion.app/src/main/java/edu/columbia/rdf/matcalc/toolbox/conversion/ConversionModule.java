@@ -44,7 +44,7 @@ import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.text.Join;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.math.matrix.DataFrame;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
@@ -70,64 +70,64 @@ public class ConversionModule extends CalcModule
 implements ModernClickListener {
 
   // private static final Path MOUSE_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse-human-conversion");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.mouse-human-conversion");
 
   // private static final Path REFSEQ_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human-refseq");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human-refseq");
   // //"res/ucsc_refseq_hg19_20160627.txt.gz";
 
   // public static final Path ENSEMBL_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human.ensembl");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human.ensembl");
   // //"res/ucsc_ensembl_hg19_20160627.txt.gz";
 
   // private static final Path NCBI_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human-ncbi");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human-ncbi");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path NCBI_GENE_INFO_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-info");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-info");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path NCBI_GENE_HISTORY_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-history");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-history");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path NCBI_GENE_REFSEQ_HUMAN_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-refseq");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human.ncbi-gene-refseq");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path HUGO_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.human.hugo");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.human.hugo");
   // //"res/hugo_symbol_entrez_20160608.txt.gz";
 
   // private static final Path NCBI_GENE_INFO_MOUSE_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-info");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-info");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path NCBI_GENE_HISTORY_MOUSE_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-history");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-history");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   // private static final Path NCBI_GENE_REFSEQ_MOUSE_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-refseq");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.mouse.ncbi-gene-refseq");
   // //"res/ncbi_grch37_hg19_p10_entrez_refseq_symbol_20160609.txt.gz";
 
   /** The Constant ENSEMBL_MOUSE_FILE. */
   public static final Path ENSEMBL_MOUSE_FILE = SettingsService.getInstance()
-      .getAsFile("org.matcalc.toolbox.bio.genes.files.mouse.ensembl"); // "res/ucsc_ensembl_mm10_20160627.txt.gz";
+      .getFile("org.matcalc.toolbox.bio.genes.files.mouse.ensembl"); // "res/ucsc_ensembl_mm10_20160627.txt.gz";
 
   /** The Constant ARROW. */
   private static final String ARROW = " > ";
 
   // private static final Path REFSEQ_MOUSE_FILE =
-  // SettingsService.getInstance().getAsFile("org.matcalc.toolbox.bio.genes.files.mouse-refseq");
+  // SettingsService.getInstance().getFile("org.matcalc.toolbox.bio.genes.files.mouse-refseq");
   // //"res/ucsc_refseq_mm10_20160627.txt.gz";
 
   /**
    * The member convert button.
    */
   private RibbonLargeButton mConvertButton = new RibbonLargeButton("Convert",
-      UIService.getInstance().loadIcon(RunVectorIcon.class, 24));
+      AssetService.getInstance().loadIcon(RunVectorIcon.class, 24));
 
   /**
    * The member window.
@@ -219,10 +219,10 @@ implements ModernClickListener {
       return;
     }
     
-    GenesService.instance().setVersion(dialog.getVersion());
+    GenesService.getInstance().setVersion(dialog.getVersion());
 
-    GenesMap humanMap = GenesService.instance().getHumanMap();
-    GenesMap mouseMap = GenesService.instance().getMouseMap();
+    GenesMap humanMap = GenesService.getInstance().getHumanMap();
+    GenesMap mouseMap = GenesService.getInstance().getMouseMap();
 
     int c = m.getCols();
 
@@ -347,7 +347,7 @@ implements ModernClickListener {
            * oldIdToSymbolHumanMap, symbolChrHumanMap, symbols);
            */
 
-          GenesService.instance().getHumanMap()
+          GenesService.getInstance().getHumanMap()
           .convert(fromId, dialog.getSplit(), toEntrezes);
 
         } else {
@@ -357,7 +357,7 @@ implements ModernClickListener {
            * symbolChrMouseMap, symbols);
            */
 
-          GenesService.instance().getMouseMap()
+          GenesService.getInstance().getMouseMap()
           .convert(fromId, dialog.getSplit(), toEntrezes);
         }
       } else {
@@ -374,9 +374,9 @@ implements ModernClickListener {
 
           convertBetweenSpecies(fromId,
               dialog.getSplit(),
-              GenesService.instance().getHumanMap(),
-              GenesService.instance().getMouseMap(),
-              GenesService.instance().getHomologyMap().humanToMouse(),
+              GenesService.getInstance().getHumanMap(),
+              GenesService.getInstance().getMouseMap(),
+              GenesService.getInstance().getHomologyMap().humanToMouse(),
               toEntrezes);
         } else {
           // To human
@@ -389,9 +389,9 @@ implements ModernClickListener {
 
           convertBetweenSpecies(fromId,
               dialog.getSplit(),
-              GenesService.instance().getMouseMap(),
-              GenesService.instance().getHumanMap(),
-              GenesService.instance().getHomologyMap().mouseToHuman(),
+              GenesService.getInstance().getMouseMap(),
+              GenesService.getInstance().getHumanMap(),
+              GenesService.getInstance().getHomologyMap().mouseToHuman(),
               toEntrezes);
         }
       }

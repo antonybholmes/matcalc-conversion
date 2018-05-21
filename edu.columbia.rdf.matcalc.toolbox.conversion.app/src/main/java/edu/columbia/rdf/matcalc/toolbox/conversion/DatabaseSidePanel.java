@@ -42,7 +42,7 @@ public class DatabaseSidePanel extends ModernComponent {
     
     // If two services provide the same genome, use the later.
     try {
-      for (String v : GenesService.instance().versions()) {
+      for (String v : GenesService.getInstance().versions()) {
 
         ModernRadioButton button = new ModernRadioButton(v);
         //button.setBorder(LEFT_BORDER);
