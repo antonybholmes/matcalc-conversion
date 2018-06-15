@@ -274,11 +274,13 @@ implements ModernClickListener {
 
     String prefix;
 
-    if (dialog.getConvToHuman()) {
-      prefix = "Human";
-    } else {
+    if (dialog.getConvToMouse()) {
       prefix = "Mouse";
+    } else {
+      prefix = "Human";
     }
+    
+    System.err.println("huh " + prefix);
 
     if (dialog.getOutputSymbols()) {
       ret.setColumnName(c++, prefix + " Gene Symbol");

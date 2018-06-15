@@ -32,8 +32,8 @@ import javax.swing.Box;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.CheckBox;
 import org.jebtk.modern.button.ModernButtonGroup;
-import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.button.ModernCheckSwitch;
+import org.jebtk.modern.button.ModernRadioButton;
 import org.jebtk.modern.dialog.ModernDialogHelpWindow;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.panel.HBox;
@@ -60,18 +60,18 @@ public class GenesDialog extends ModernDialogHelpWindow
   private CheckBox mCheckSplit = new ModernCheckSwitch("Split hyphens");
 
   /** The m radio conv from human. */
-  private ModernTwoStateWidget mRadioConvFromHuman = new ModernCheckButton(
+  private ModernTwoStateWidget mRadioConvFromHuman = new ModernRadioButton(
       "Human");
 
   /** The m radio conv from mouse. */
-  private ModernTwoStateWidget mRadioConvFromMouse = new ModernCheckButton(
+  private ModernTwoStateWidget mRadioConvFromMouse = new ModernRadioButton(
       "Mouse");
 
   /** The m radio conv to human. */
-  private ModernTwoStateWidget mRadioConvToHuman = new ModernCheckButton("Human");
+  private ModernTwoStateWidget mRadioConvToHuman = new ModernRadioButton("Human");
 
   /** The m radio conv to mouse. */
-  private ModernTwoStateWidget mRadioConvToMouse = new ModernCheckButton("Mouse");
+  private ModernTwoStateWidget mRadioConvToMouse = new ModernRadioButton("Mouse");
 
   /** The m check symbol. */
   private CheckBox mCheckSymbol = new ModernCheckSwitch("Symbol", true);
