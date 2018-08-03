@@ -36,7 +36,7 @@ public class GeneMapping {
   /**
    * Gets the all the ids regardless of type.
    *
-   * @param type the type
+   * @param mType the type
    * @return the ids
    */
   public Collection<String> getIds() {
