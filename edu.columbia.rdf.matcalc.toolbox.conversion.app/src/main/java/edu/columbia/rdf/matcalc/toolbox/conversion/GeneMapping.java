@@ -16,6 +16,7 @@
 package edu.columbia.rdf.matcalc.toolbox.conversion;
 
 import java.util.Collection;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -42,8 +43,8 @@ public class GeneMapping {
   public Collection<String> getIds() {
     Set<String> ret = new TreeSet<String>();
     
-    for (String type : mOfficalIdMap) {
-      ret.addAll(mOfficalIdMap.get(type));
+    for (Entry<String, Set<String>> item : mOfficalIdMap) {
+      ret.addAll(item.getValue());
     }
     
     return ret;
