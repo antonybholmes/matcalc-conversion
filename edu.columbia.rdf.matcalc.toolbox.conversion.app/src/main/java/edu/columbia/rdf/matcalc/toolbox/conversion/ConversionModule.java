@@ -55,7 +55,7 @@ import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.tooltip.ModernToolTip;
 
 import edu.columbia.rdf.matcalc.MainMatCalcWindow;
-import edu.columbia.rdf.matcalc.toolbox.CalcModule;
+import edu.columbia.rdf.matcalc.toolbox.Module;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -66,7 +66,7 @@ import edu.columbia.rdf.matcalc.toolbox.CalcModule;
  * @author Antony Holmes Holmes
  *
  */
-public class ConversionModule extends CalcModule 
+public class ConversionModule extends Module 
 implements ModernClickListener {
 
   // private static final Path MOUSE_HUMAN_FILE =
@@ -545,7 +545,7 @@ implements ModernClickListener {
       
     }
 
-    mWindow.addToHistory("Gene Conversion", ret);
+    mWindow.history().addToHistory("Gene Conversion", ret);
   }
 
   /**

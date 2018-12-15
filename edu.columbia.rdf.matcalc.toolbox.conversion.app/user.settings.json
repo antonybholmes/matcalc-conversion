@@ -1,8 +1,17 @@
 [
   {
-    "name":"\/matcalc\/file\/has-header", 
-    "value":"true", 
-    "description":"", 
-    "locked":false
+    "name":"matcalc\/import\/file\/has-header", 
+    "value":true, 
+    "description":""
+  },
+  {
+    "name":"matcalc\/import\/file\/skip\/lines", 
+    "value":true, 
+    "description":""
+  },
+  {
+    "name":"matcalc\/import\/file\/skip\/matches", 
+    "value":"#,@,$", 
+    "description":""
   }
 ]
