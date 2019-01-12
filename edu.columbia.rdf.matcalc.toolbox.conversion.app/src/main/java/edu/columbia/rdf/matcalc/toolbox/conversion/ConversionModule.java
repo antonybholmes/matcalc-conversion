@@ -63,7 +63,7 @@ import edu.columbia.rdf.matcalc.toolbox.Module;
  * with the same merge id will be merged together. Coordinates and copy number
  * will be adjusted but genes, cytobands etc are not.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class ConversionModule extends Module 
@@ -209,7 +209,7 @@ implements ModernClickListener {
     int chrCol = DataFrame.findColumn(m, "location", "chr");
 
     // map using lowercase to make matching easier
-    List<String> ids = m.columnAsText(col);
+    List<String> ids = m.columnToText(col);
 
     GenesDialog dialog = new GenesDialog(mWindow);
 

@@ -19,7 +19,7 @@ import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 /**
  * List available annotations organized by genome that a user can select from.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class DatabaseSidePanel extends ModernComponent {
