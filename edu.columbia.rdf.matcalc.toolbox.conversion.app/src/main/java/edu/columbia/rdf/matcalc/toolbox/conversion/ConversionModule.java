@@ -209,7 +209,7 @@ implements ModernClickListener {
     int chrCol = DataFrame.findColumn(m, "location", "chr");
 
     // map using lowercase to make matching easier
-    List<String> ids = m.columnToText(col);
+    String[] ids = m.columnToText(col);
 
     GenesDialog dialog = new GenesDialog(mWindow);
 
@@ -323,7 +323,7 @@ implements ModernClickListener {
     }
 
     for (int i = 0; i < ret.getRows(); ++i) {
-      String id = ids.get(i);
+      String id = ids[i];
       String chr = null;
 
       if (chrCol != -1) {

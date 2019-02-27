@@ -13,8 +13,6 @@ import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernRadioButton;
 import org.jebtk.modern.dialog.ModernDialogTaskWindow;
 import org.jebtk.modern.panel.VBox;
-import org.jebtk.modern.scrollpane.ModernScrollPane;
-import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 
 /**
  * List available annotations organized by genome that a user can select from.
