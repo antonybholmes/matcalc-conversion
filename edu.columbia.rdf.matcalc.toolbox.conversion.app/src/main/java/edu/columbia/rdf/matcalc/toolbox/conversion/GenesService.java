@@ -87,7 +87,7 @@ public class GenesService {
 
   /** The Constant GENES_DIR. */
   private static final Path GENES_DIR = 
-      PathUtils.getPath("res/modules/genes/conversion");
+      PathUtils.getPath("res/modules/conversion");
 
   /**
    * Instantiates a new motifs db service.
