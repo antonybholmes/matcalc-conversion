@@ -540,7 +540,7 @@ implements ModernClickListener {
       }
       
       if (dialog.getOutputParams()) {
-        ret.set(i, c++, params(humanMap, mouseMap,  dialog.getConvFromHuman(), dialog.getConvToHuman()));
+        ret.set(i, c++, props(humanMap, mouseMap,  dialog.getConvFromHuman(), dialog.getConvToHuman()));
       }
       
     }
@@ -649,7 +649,7 @@ implements ModernClickListener {
     return Join.onSemiColon().values(ret).toString();
   }
   
-  private String params(GenesMap humanMap,
+  private String props(GenesMap humanMap,
       GenesMap mouseMap,
       boolean fromHuman, 
       boolean toHuman) {
